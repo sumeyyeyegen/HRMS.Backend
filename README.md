@@ -1,1 +1,1 @@
-# HRMS.Backend
+# HRMS (Human Resource Management System)
