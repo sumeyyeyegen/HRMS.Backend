@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -18,7 +19,7 @@ import lombok.NoArgsConstructor;
 @Table(name="jobs")
 @NoArgsConstructor
 @AllArgsConstructor
-
+@PrimaryKeyJoinColumn(name="id")
 public class Job {
 	@Id
 	@Column(name="id",nullable = false)

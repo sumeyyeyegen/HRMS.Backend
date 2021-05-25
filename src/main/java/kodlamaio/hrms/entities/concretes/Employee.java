@@ -8,14 +8,19 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
 @Table(name="employees")
-
+@NoArgsConstructor
+@AllArgsConstructor
+@PrimaryKeyJoinColumn(name="id",referencedColumnName = "id")
 public class Employee extends User {	
 	@Column(name="first_name",nullable = false,length = 35)
 	private String first_name;
