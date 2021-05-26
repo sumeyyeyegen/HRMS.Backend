@@ -22,8 +22,7 @@ public class CandidateManager implements CandidateService {
 
 	@Override
 	public List<Candidate> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.candidateDao.findAll();
 	}
 
 }
