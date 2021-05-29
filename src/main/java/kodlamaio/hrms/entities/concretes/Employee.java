@@ -13,6 +13,7 @@ import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
@@ -21,6 +22,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @PrimaryKeyJoinColumn(name="id",referencedColumnName = "id")
+@EqualsAndHashCode(callSuper = false)
 public class Employee extends User {	
 	@Column(name="first_name",nullable = false,length = 35)
 	private String first_name;
