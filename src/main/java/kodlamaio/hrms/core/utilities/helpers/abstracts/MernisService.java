@@ -1,4 +1,4 @@
-package kodlamaio.hrms.adapters;
+package kodlamaio.hrms.core.utilities.helpers.abstracts;
 
 import kodlamaio.hrms.entities.concretes.Candidate;
 
