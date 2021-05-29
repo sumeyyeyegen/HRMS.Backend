@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kodlamaio.hrms.adapters.MernisServiceAdapter;
 import kodlamaio.hrms.business.abstracts.CandidateService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
@@ -17,11 +18,14 @@ import kodlamaio.hrms.entities.concretes.Candidate;
 public class CandidateManager implements CandidateService {
 	
 	private CandidateDao candidateDao;
+	private MernisServiceAdapter mernisAdapter;
 	
 	@Autowired
-	public CandidateManager(CandidateDao candidateDao) {
+	public CandidateManager(CandidateDao candidateDao,MernisServiceAdapter mernisAdapter) {
 		super();
 		this.candidateDao = candidateDao;
+		//TODO: mernis
+		this.mernisAdapter=mernisAdapter;
 	}
 
 	@Override
