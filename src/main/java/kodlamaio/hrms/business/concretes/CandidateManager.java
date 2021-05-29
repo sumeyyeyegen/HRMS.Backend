@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.CandidateService;
 import kodlamaio.hrms.core.utilities.helpers.abstracts.EmailService;
+import kodlamaio.hrms.core.utilities.helpers.abstracts.EmailValidationService;
 import kodlamaio.hrms.core.utilities.helpers.abstracts.MernisService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.ErrorResult;
@@ -22,13 +23,14 @@ public class CandidateManager implements CandidateService {
 	private CandidateDao candidateDao;
 	private MernisService mernisService;
 	private EmailService emailService;
-	
+	private EmailValidationService emailValidationService;
 	@Autowired
-	public CandidateManager(CandidateDao candidateDao,MernisService mernisService,EmailService emailService) {
+public CandidateManager(CandidateDao candidateDao,MernisService mernisService,EmailService emailService,EmailValidationService emailValidationService) {
 		super();
 		this.candidateDao = candidateDao;
 		this.mernisService=mernisService;
 		this.emailService= emailService;
+		this.emailValidationService = emailValidationService;
 	}
 
 	@Override
@@ -39,7 +41,8 @@ public class CandidateManager implements CandidateService {
 	@Override
 	public Result register(Candidate candidate) {
 		Result result = new ErrorResult("Kayıt işlemi başarısız");
-		if(mernisService.checkIfRealPerson(candidate)) {
+		if(emailValidationService.emailValidation(candidate.getEmail()) 
+			&& mernisService.checkIfRealPerson(candidate)) {
 			emailService.sendEmail("Kayıt işleminin gerçekleşmesi için tarafınıza mail gönderilmiştir.");
 			candidateDao.save(candidate);
 			result =  new SuccessResult("Kayıt işlemi başarılı");
