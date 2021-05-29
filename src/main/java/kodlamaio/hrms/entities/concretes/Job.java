@@ -28,8 +28,4 @@ public class Job {
 	
 	@Column(name="title",nullable = false,length = 255)
 	private String title;
-	
-	@OneToOne
-	@JoinColumn(name="user_id")
-	private User user_id;
 }
