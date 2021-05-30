@@ -24,8 +24,9 @@ public class CandidateManager implements CandidateService {
 	private MernisService mernisService;
 	private EmailService emailService;
 	private EmailValidationService emailValidationService;
+	
 	@Autowired
-public CandidateManager(CandidateDao candidateDao,MernisService mernisService,EmailService emailService,EmailValidationService emailValidationService) {
+	public CandidateManager(CandidateDao candidateDao,MernisService mernisService,EmailService emailService,EmailValidationService emailValidationService) {
 		super();
 		this.candidateDao = candidateDao;
 		this.mernisService=mernisService;

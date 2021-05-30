@@ -33,13 +33,13 @@ public class Employer extends User {
 	private int id;
 	
 	@Column(name="company_name",nullable = false,length = 255)
-	private String company_name;
+	private String companyName;
 	
 	@Column(name="web_site",nullable = false,length = 50)
-	private String web_site;
+	private String webSite;
 	
 	@Column(name="phone_number",nullable = false,length = 12)
-	private String phone_number;
+	private String phoneNumber;
 	
 	@OneToMany(mappedBy = "employer")
 	private List<JobAdvertisement> jobAdvertisements;
