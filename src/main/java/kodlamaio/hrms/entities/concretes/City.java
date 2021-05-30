@@ -28,8 +28,10 @@ public class City {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id", nullable = false)
 	private int id;
+	
 	@Column(name="name", nullable = false, length = 50)
 	private String name;
+
 	@OneToMany(mappedBy="city")
-	private List<JobAdvertisement> jobAdvertisement;
+	private List<JobAdvertisement> jobAdvertisements;
 }

@@ -2,13 +2,11 @@ package kodlamaio.hrms.entities.concretes;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.Persistence;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -29,4 +27,6 @@ public class User {
 	
 	@Column(name="password",nullable = false, length = 25)
 	private String password;
+	
+	
 }
