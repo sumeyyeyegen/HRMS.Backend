@@ -3,11 +3,14 @@ package kodlamaio.hrms.entities.concretes;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
@@ -15,8 +18,14 @@ import lombok.NoArgsConstructor;
 @Table(name="candidates")
 @NoArgsConstructor
 @AllArgsConstructor
-@PrimaryKeyJoinColumn(name="id",referencedColumnName = "id")
+
+@EqualsAndHashCode(callSuper=false)
 public class Candidate extends User {	
+	@Id
+	@Column(name="id")
+	@PrimaryKeyJoinColumn(name="id",referencedColumnName = "id")
+	private int id;
+	
 	@Column(name="first_name",nullable = false,length = 20)
 	private String first_name;
 	
@@ -28,4 +37,5 @@ public class Candidate extends User {
 	
 	@Column(name="birth_year",nullable = false)
 	private int birth_year;	
+
 }
