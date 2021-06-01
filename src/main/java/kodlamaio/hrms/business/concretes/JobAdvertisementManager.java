@@ -25,6 +25,6 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 	@Override
 	public DataResult<List<JobAdvertisementForListDto>> getByFormActiveTrue() {
 		return new SuccessDataResult<List<JobAdvertisementForListDto>>(
-				jobAdvertisementDao.getByFormActiveTrue(), "Data Listelendi");
+				jobAdvertisementDao.getByIsActiveTrue(), "Data Listelendi");
 	}
 }
