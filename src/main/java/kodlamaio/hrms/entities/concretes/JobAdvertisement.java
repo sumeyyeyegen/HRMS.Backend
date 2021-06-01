@@ -1,5 +1,6 @@
 package kodlamaio.hrms.entities.concretes;
 
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -49,12 +50,12 @@ public class JobAdvertisement {
 	private int openPositions;
 	
 	@Column(name="application_deadline", nullable = false, length = 50)
-	private String applicationDeadline;
+	private Date applicationDeadline;
 	
 	@Column(name="is_active", nullable = false)
 	private boolean isActive;
 	
 	@Column(name="release_date", nullable = false, length = 50)
-	private String releaseDate;
+	private Date releaseDate;
 	
 }
