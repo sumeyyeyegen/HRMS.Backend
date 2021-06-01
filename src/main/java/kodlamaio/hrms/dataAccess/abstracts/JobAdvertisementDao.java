@@ -7,9 +7,12 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
-
+import kodlamaio.hrms.entities.dtos.JobAdvertisementForListDto;
 
 public interface JobAdvertisementDao extends JpaRepository<JobAdvertisement, Integer>{
-	@Query("SELECT new hrms.entities.concretes.JobAdvertisement(emp.companyName,j.title,ja.openPositions,ja.releaseDate,ja.applicationDeadline) FROM JobAdvertisement ja JOIN ja.employer e JOIN ja.job j WHERE ja.isActive=:isActive AND e.companyName=:companyName")                             
-	List<JobAdvertisement> getByIsActiveForList(@Param("isActive") boolean isActive);
+	
+	@Query("Select new kodlamaio.hrms.entities.dtos.JobAdvertisementForListDto"
+			+ "(e.companyName , job.title , j.openPositions, j.releaseDate, j.applicationDeadline) "
+			+ "From JobAdvertisement j Inner Join j.employer e Inner Join j.job job where j.isActive = true")
+	List<JobAdvertisementForListDto> getByFormActiveTrue();
 }

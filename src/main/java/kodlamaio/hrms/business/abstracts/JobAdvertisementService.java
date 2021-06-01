@@ -4,7 +4,8 @@ import java.util.List;
 
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
+import kodlamaio.hrms.entities.dtos.JobAdvertisementForListDto;
 
 public interface JobAdvertisementService {
-	public DataResult<List<JobAdvertisement>> getAllByIsActiveForList(boolean isActive);
+	DataResult<List<JobAdvertisementForListDto>> getByFormActiveTrue();
 }
