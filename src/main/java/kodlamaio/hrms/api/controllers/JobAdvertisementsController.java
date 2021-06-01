@@ -25,8 +25,28 @@ public class JobAdvertisementsController {
 		this.jobAdvertisementService = jobAdvertisementService;
 	}	
 	
-	@GetMapping("/getByFormActiveTrue")
-	public DataResult<List<JobAdvertisementForListDto>> getByFormActiveTrue(){
-		return this.jobAdvertisementService.getByFormActiveTrue();
+	@GetMapping("/getByIsActiveTrue")
+	public DataResult<List<JobAdvertisementForListDto>> getByIsActiveTrue(){
+		return this.jobAdvertisementService.getByIsActiveTrue();
+	}
+	
+	@GetMapping("/getByIsActiveTrueOrderByReleaseDateAsc")
+	public DataResult<List<JobAdvertisementForListDto>> getByIsActiveTrueOrderByReleaseDateAsc(){
+		return this.jobAdvertisementService.getByIsActiveTrueOrderByReleaseDateAsc();
+	}
+	
+	@GetMapping("/getByIsActiveTrueOrderByReleaseDateDesc")
+	public DataResult<List<JobAdvertisementForListDto>> getByIsActiveTrueOrderByReleaseDateDesc(){
+		return this.jobAdvertisementService.getByIsActiveTrueOrderByReleaseDateDesc();
+	}
+	
+	@GetMapping("/getByIsActiveTrueOrderByApplicationDeadlineAsc")
+	public DataResult<List<JobAdvertisementForListDto>> getByIsActiveTrueOrderByApplicationDeadlineAsc(){
+		return this.jobAdvertisementService.getByIsActiveTrueOrderByApplicationDeadlineAsc();
+	}
+	
+	@GetMapping("/getByIsActiveTrueOrderByApplicationDeadlineDesc")
+	public DataResult<List<JobAdvertisementForListDto>> getByIsActiveTrueOrderByApplicationDeadlineDesc(){
+		return this.jobAdvertisementService.getByIsActiveTrueOrderByApplicationDeadlineDesc();
 	}
 }

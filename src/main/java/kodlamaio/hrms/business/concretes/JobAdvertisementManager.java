@@ -23,8 +23,30 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 	}
 
 	@Override
-	public DataResult<List<JobAdvertisementForListDto>> getByFormActiveTrue() {
+	public DataResult<List<JobAdvertisementForListDto>> getByIsActiveTrue() {
 		return new SuccessDataResult<List<JobAdvertisementForListDto>>(
 				jobAdvertisementDao.getByIsActiveTrue(), "Data Listelendi");
 	}
+
+	@Override
+	public DataResult<List<JobAdvertisementForListDto>> getByIsActiveTrueOrderByReleaseDateDesc() {
+		return new SuccessDataResult<List<JobAdvertisementForListDto>>(jobAdvertisementDao.getByIsActiveTrueOrderByReleaseDateDesc(),"Data listelendi.");
+	}
+
+	@Override
+	public DataResult<List<JobAdvertisementForListDto>> getByIsActiveTrueOrderByReleaseDateAsc() {
+		return new SuccessDataResult<List<JobAdvertisementForListDto>>(jobAdvertisementDao.getByIsActiveTrueOrderByReleaseDateAsc(),"Data listelendi.");
+	}
+
+	@Override
+	public DataResult<List<JobAdvertisementForListDto>> getByIsActiveTrueOrderByApplicationDeadlineDesc() {
+		return new SuccessDataResult<List<JobAdvertisementForListDto>>(jobAdvertisementDao.getByIsActiveTrueOrderByApplicationDeadlineDesc() ,"Data listelendi.");
+	}
+
+	@Override
+	public DataResult<List<JobAdvertisementForListDto>> getByIsActiveTrueOrderByApplicationDeadlineAsc() {
+		return new SuccessDataResult<List<JobAdvertisementForListDto>>(jobAdvertisementDao.getByIsActiveTrueOrderByReleaseDateAsc(),"Data listelendi.");
+	}
+	
+	
 }

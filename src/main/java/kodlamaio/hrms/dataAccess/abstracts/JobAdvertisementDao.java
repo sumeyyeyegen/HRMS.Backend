@@ -13,11 +13,27 @@ public interface JobAdvertisementDao extends JpaRepository<JobAdvertisement, Int
 	
 	@Query("Select new kodlamaio.hrms.entities.dtos.JobAdvertisementForListDto"
 			+ "(e.companyName , job.title , j.openPositions, j.releaseDate, j.applicationDeadline) "
-			+ "From JobAdvertisement j Inner Join j.employer e Inner Join j.job job where j.isActive = true")
+			+ "From JobAdvertisement j Inner Join j.employer e Inner Join j.job job WHERE j.isActive = true")
 	List<JobAdvertisementForListDto> getByIsActiveTrue();
 	
 	@Query("Select new kodlamaio.hrms.entities.dtos.JobAdvertisementForListDto"
 			+ "(e.companyName , job.title , j.openPositions, j.releaseDate, j.applicationDeadline) "
-			+ "From JobAdvertisement j Inner Join j.employer e Inner Join j.job job where j.isActive = true")
+			+ "From JobAdvertisement j Inner Join j.employer e Inner Join j.job job WHERE j.isActive = true ORDER BY j.releaseDate DESC")
 	List<JobAdvertisementForListDto> getByIsActiveTrueOrderByReleaseDateDesc();
+	
+	@Query("Select new kodlamaio.hrms.entities.dtos.JobAdvertisementForListDto"
+			+ "(e.companyName , job.title , j.openPositions, j.releaseDate, j.applicationDeadline) "
+			+ "From JobAdvertisement j Inner Join j.employer e Inner Join j.job job WHERE j.isActive = true ORDER BY j.releaseDate ASC")
+	List<JobAdvertisementForListDto> getByIsActiveTrueOrderByReleaseDateAsc();
+	
+	@Query("Select new kodlamaio.hrms.entities.dtos.JobAdvertisementForListDto"
+			+ "(e.companyName , job.title , j.openPositions, j.releaseDate, j.applicationDeadline) "
+			+ "From JobAdvertisement j Inner Join j.employer e Inner Join j.job job WHERE j.isActive = true ORDER BY j.applicationDeadline ASC")
+	List<JobAdvertisementForListDto> getByIsActiveTrueOrderByApplicationDeadlineAsc();
+	
+	@Query("Select new kodlamaio.hrms.entities.dtos.JobAdvertisementForListDto"
+			+ "(e.companyName , job.title , j.openPositions, j.releaseDate, j.applicationDeadline) "
+			+ "From JobAdvertisement j Inner Join j.employer e Inner Join j.job job WHERE j.isActive = true ORDER BY j.applicationDeadline DESC")
+	List<JobAdvertisementForListDto> getByIsActiveTrueOrderByApplicationDeadlineDesc();
+	
 }

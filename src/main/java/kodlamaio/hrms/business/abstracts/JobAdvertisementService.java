@@ -7,5 +7,9 @@ import kodlamaio.hrms.entities.concretes.JobAdvertisement;
 import kodlamaio.hrms.entities.dtos.JobAdvertisementForListDto;
 
 public interface JobAdvertisementService {
-	DataResult<List<JobAdvertisementForListDto>> getByFormActiveTrue();
+	DataResult<List<JobAdvertisementForListDto>> getByIsActiveTrue();
+	DataResult<List<JobAdvertisementForListDto>> getByIsActiveTrueOrderByReleaseDateDesc();
+	DataResult<List<JobAdvertisementForListDto>> getByIsActiveTrueOrderByReleaseDateAsc();
+	DataResult<List<JobAdvertisementForListDto>> getByIsActiveTrueOrderByApplicationDeadlineDesc();
+	DataResult<List<JobAdvertisementForListDto>> getByIsActiveTrueOrderByApplicationDeadlineAsc();
 }
