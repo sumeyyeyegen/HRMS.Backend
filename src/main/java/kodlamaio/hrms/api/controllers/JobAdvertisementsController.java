@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import kodlamaio.hrms.business.abstracts.JobAdvertisementService;
@@ -48,5 +49,10 @@ public class JobAdvertisementsController {
 	@GetMapping("/getByIsActiveTrueOrderByApplicationDeadlineDesc")
 	public DataResult<List<JobAdvertisementForListDto>> getByIsActiveTrueOrderByApplicationDeadlineDesc(){
 		return this.jobAdvertisementService.getByIsActiveTrueOrderByApplicationDeadlineDesc();
+	}
+	
+	@GetMapping("/getByIsActiveTrueAndEmployerId")
+	public DataResult<List<JobAdvertisementForListDto>> getByIsActiveTrueAndEmployer_IdForList(@RequestParam final int id){
+		return this.jobAdvertisementService.getByIsActiveTrueAndEmployer_IdForList(id);
 	}
 }

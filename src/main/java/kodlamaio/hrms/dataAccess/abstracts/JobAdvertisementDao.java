@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
 import kodlamaio.hrms.entities.dtos.JobAdvertisementForListDto;
@@ -13,27 +14,32 @@ public interface JobAdvertisementDao extends JpaRepository<JobAdvertisement, Int
 	
 	@Query("Select new kodlamaio.hrms.entities.dtos.JobAdvertisementForListDto"
 			+ "(e.companyName , job.title , j.openPositions, j.releaseDate, j.applicationDeadline) "
-			+ "From JobAdvertisement j Inner Join j.employer e Inner Join j.job job WHERE j.isActive = true")
+			+ "From JobAdvertisement j JOIN j.employer e JOIN j.job job WHERE j.isActive = true")
 	List<JobAdvertisementForListDto> getByIsActiveTrue();
 	
 	@Query("Select new kodlamaio.hrms.entities.dtos.JobAdvertisementForListDto"
 			+ "(e.companyName , job.title , j.openPositions, j.releaseDate, j.applicationDeadline) "
-			+ "From JobAdvertisement j Inner Join j.employer e Inner Join j.job job WHERE j.isActive = true ORDER BY j.releaseDate DESC")
+			+ "From JobAdvertisement j JOIN j.employer e JOIN j.job job WHERE j.isActive = true ORDER BY j.releaseDate DESC")
 	List<JobAdvertisementForListDto> getByIsActiveTrueOrderByReleaseDateDesc();
 	
 	@Query("Select new kodlamaio.hrms.entities.dtos.JobAdvertisementForListDto"
 			+ "(e.companyName , job.title , j.openPositions, j.releaseDate, j.applicationDeadline) "
-			+ "From JobAdvertisement j Inner Join j.employer e Inner Join j.job job WHERE j.isActive = true ORDER BY j.releaseDate ASC")
+			+ "From JobAdvertisement j JOIN j.employer e JOIN j.job job WHERE j.isActive = true ORDER BY j.releaseDate ASC")
 	List<JobAdvertisementForListDto> getByIsActiveTrueOrderByReleaseDateAsc();
 	
 	@Query("Select new kodlamaio.hrms.entities.dtos.JobAdvertisementForListDto"
 			+ "(e.companyName , job.title , j.openPositions, j.releaseDate, j.applicationDeadline) "
-			+ "From JobAdvertisement j Inner Join j.employer e Inner Join j.job job WHERE j.isActive = true ORDER BY j.applicationDeadline ASC")
+			+ "From JobAdvertisement j JOIN j.employer e JOIN j.job job WHERE j.isActive = true ORDER BY j.applicationDeadline ASC")
 	List<JobAdvertisementForListDto> getByIsActiveTrueOrderByApplicationDeadlineAsc();
 	
 	@Query("Select new kodlamaio.hrms.entities.dtos.JobAdvertisementForListDto"
 			+ "(e.companyName , job.title , j.openPositions, j.releaseDate, j.applicationDeadline) "
-			+ "From JobAdvertisement j Inner Join j.employer e Inner Join j.job job WHERE j.isActive = true ORDER BY j.applicationDeadline DESC")
+			+ "From JobAdvertisement j JOIN j.employer e JOIN j.job job WHERE j.isActive = true ORDER BY j.applicationDeadline DESC")
 	List<JobAdvertisementForListDto> getByIsActiveTrueOrderByApplicationDeadlineDesc();
+	
+	@Query("Select new kodlamaio.hrms.entities.dtos.JobAdvertisementForListDto"
+			+ "(e.companyName , job.title , j.openPositions, j.releaseDate, j.applicationDeadline) "
+			+ "From JobAdvertisement j JOIN j.employer e JOIN j.job job WHERE j.isActive = true AND e.id=:employerId")
+	List<JobAdvertisementForListDto> getByIsActiveTrueAndEmployer_IdForList(@Param("employerId") int id);
 	
 }

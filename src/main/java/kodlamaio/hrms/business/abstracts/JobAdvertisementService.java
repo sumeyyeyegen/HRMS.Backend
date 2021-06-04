@@ -12,4 +12,5 @@ public interface JobAdvertisementService {
 	DataResult<List<JobAdvertisementForListDto>> getByIsActiveTrueOrderByReleaseDateAsc();
 	DataResult<List<JobAdvertisementForListDto>> getByIsActiveTrueOrderByApplicationDeadlineDesc();
 	DataResult<List<JobAdvertisementForListDto>> getByIsActiveTrueOrderByApplicationDeadlineAsc();
+	DataResult<List<JobAdvertisementForListDto>> getByIsActiveTrueAndEmployer_IdForList(int id);
 }

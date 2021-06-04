@@ -47,6 +47,9 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 	public DataResult<List<JobAdvertisementForListDto>> getByIsActiveTrueOrderByApplicationDeadlineAsc() {
 		return new SuccessDataResult<List<JobAdvertisementForListDto>>(jobAdvertisementDao.getByIsActiveTrueOrderByReleaseDateAsc(),"Data listelendi.");
 	}
-	
-	
+
+	@Override
+	public DataResult<List<JobAdvertisementForListDto>> getByIsActiveTrueAndEmployer_IdForList(int id) {
+		return new SuccessDataResult<List<JobAdvertisementForListDto>>(jobAdvertisementDao.getByIsActiveTrueAndEmployer_IdForList(id),"Data listelendi.");
+	}	
 }
