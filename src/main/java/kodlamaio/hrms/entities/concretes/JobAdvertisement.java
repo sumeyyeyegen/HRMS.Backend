@@ -9,7 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -38,10 +37,10 @@ public class JobAdvertisement {
 	private Job job;
 	
 	@Column(name="min_salary")
-	private double minSalary;
+	private int minSalary;
 	
 	@Column(name="max_salary")
-	private double maxSalary;
+	private int maxSalary;
 	
 	@Column(name="job_description", nullable = false, length = 500)
 	private String jobDescription;
