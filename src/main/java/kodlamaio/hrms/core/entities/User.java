@@ -1,0 +1,57 @@
+package kodlamaio.hrms.core.entities;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.UniqueElements;
+
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+@Data
+@Entity(name="user")
+@Inheritance(strategy = InheritanceType.JOINED)
+@NoArgsConstructor
+@ToString
+@EqualsAndHashCode
+@Table(name="users")
+
+public class User {
+	@NotNull
+	@Column(name="id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
+	private int id;
+	
+	@NotNull
+	@UniqueElements
+	@Column(name="email")
+	private String email;
+	
+	@NotNull
+	@Column(name="password")
+	private String password;
+	
+	@Builder
+	public User(final int id, 
+			@NotBlank @Email @Size(max = 320) final String email,
+			@NotBlank @Size(max = 25) final String password) {
+		this.id = id;
+		this.email = email;
+		this.password = password;
+	}
+	
+}
