@@ -1,17 +1,19 @@
 package kodlamaio.hrms.api.controllers;
 
 import java.util.List;
-
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import kodlamaio.hrms.business.abstracts.JobAdvertisementService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
+import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
 import kodlamaio.hrms.entities.dtos.JobAdvertisementForListDto;
 
@@ -26,33 +28,121 @@ public class JobAdvertisementsController {
 		this.jobAdvertisementService = jobAdvertisementService;
 	}	
 	
+	@PostMapping("/add")
+	public ResponseEntity<Result> add(@Valid @RequestBody final JobAdvertisement jobAdvertisement) {
+		final Result result = jobAdvertisementService.add(jobAdvertisement);
+
+		if (!result.isSuccess())
+			return new ResponseEntity<Result>(result, HttpStatus.BAD_REQUEST);
+
+		return ResponseEntity.ok(result);
+	}
+	
+	@PostMapping("/update")
+	public ResponseEntity<Result> update(@Valid @RequestBody final JobAdvertisement jobAdvertisement) {
+		final Result result = jobAdvertisementService.update(jobAdvertisement);
+
+		if (!result.isSuccess())
+			return new ResponseEntity<Result>(result, HttpStatus.BAD_REQUEST);
+
+		return ResponseEntity.ok(result);
+	}
+	
+	@PostMapping("/update/disablebyid")
+	public ResponseEntity<Result> disableById(final int id) {
+		final Result result = jobAdvertisementService.disableById(id);
+
+		if (!result.isSuccess())
+			return new ResponseEntity<Result>(result, HttpStatus.BAD_REQUEST);
+
+		return ResponseEntity.ok(result);
+	}
+	
+	@GetMapping("/getall")
+	public ResponseEntity<DataResult<List<JobAdvertisement>>> getAll() {
+		final DataResult<List<JobAdvertisement>> result = jobAdvertisementService.getAll();
+
+		if (!result.isSuccess())
+			return new ResponseEntity<DataResult<List<JobAdvertisement>>>(result, HttpStatus.BAD_REQUEST);
+
+		return ResponseEntity.ok(result);
+	}
+	
 	@GetMapping("/getByIsActiveTrue")
-	public DataResult<List<JobAdvertisementForListDto>> getByIsActiveTrue(){
-		return this.jobAdvertisementService.getByIsActiveTrue();
+	public ResponseEntity<DataResult<List<JobAdvertisementForListDto>>> getByIsActiveTrue(){
+		final DataResult<List<JobAdvertisementForListDto>> result = jobAdvertisementService.getByIsActiveTrue();
+		if (!result.isSuccess())
+			return new ResponseEntity<DataResult<List<JobAdvertisementForListDto>>>(result, HttpStatus.BAD_REQUEST);
+		
+		return ResponseEntity.ok(result) ;
 	}
 	
 	@GetMapping("/getByIsActiveTrueOrderByReleaseDateAsc")
-	public DataResult<List<JobAdvertisementForListDto>> getByIsActiveTrueOrderByReleaseDateAsc(){
-		return this.jobAdvertisementService.getByIsActiveTrueOrderByReleaseDateAsc();
+	public ResponseEntity<DataResult<List<JobAdvertisementForListDto>>> getByIsActiveTrueOrderByReleaseDateAsc(){
+		final DataResult<List<JobAdvertisementForListDto>> result = jobAdvertisementService.getByIsActiveTrueOrderByReleaseDateAsc();
+		if(!result.isSuccess())
+			return new ResponseEntity<DataResult<List<JobAdvertisementForListDto>>>(result,HttpStatus.BAD_REQUEST);
+		
+		return ResponseEntity.ok(result);
 	}
 	
 	@GetMapping("/getByIsActiveTrueOrderByReleaseDateDesc")
-	public DataResult<List<JobAdvertisementForListDto>> getByIsActiveTrueOrderByReleaseDateDesc(){
-		return this.jobAdvertisementService.getByIsActiveTrueOrderByReleaseDateDesc();
+	public ResponseEntity<DataResult<List<JobAdvertisementForListDto>>> getByIsActiveTrueOrderByReleaseDateDesc(){
+		final DataResult<List<JobAdvertisementForListDto>> result = jobAdvertisementService.getByIsActiveTrueOrderByReleaseDateDesc();
+		if(!result.isSuccess())
+			return new ResponseEntity<DataResult<List<JobAdvertisementForListDto>>>(result, HttpStatus.BAD_REQUEST);
+		return ResponseEntity.ok(result) ;
 	}
 	
 	@GetMapping("/getByIsActiveTrueOrderByApplicationDeadlineAsc")
-	public DataResult<List<JobAdvertisementForListDto>> getByIsActiveTrueOrderByApplicationDeadlineAsc(){
-		return this.jobAdvertisementService.getByIsActiveTrueOrderByApplicationDeadlineAsc();
+	public ResponseEntity<DataResult<List<JobAdvertisementForListDto>>> getByIsActiveTrueOrderByApplicationDeadlineAsc(){
+		final DataResult<List<JobAdvertisementForListDto>> result = jobAdvertisementService.getByIsActiveTrueOrderByApplicationDeadlineAsc();
+		
+		if(!result.isSuccess())
+			return new ResponseEntity<DataResult<List<JobAdvertisementForListDto>>>(result,HttpStatus.BAD_REQUEST);
+	
+		return ResponseEntity.ok(result) ;
 	}
 	
 	@GetMapping("/getByIsActiveTrueOrderByApplicationDeadlineDesc")
-	public DataResult<List<JobAdvertisementForListDto>> getByIsActiveTrueOrderByApplicationDeadlineDesc(){
-		return this.jobAdvertisementService.getByIsActiveTrueOrderByApplicationDeadlineDesc();
+	public ResponseEntity<DataResult<List<JobAdvertisementForListDto>>> getByIsActiveTrueOrderByApplicationDeadlineDesc(){
+		final DataResult<List<JobAdvertisementForListDto>> result = jobAdvertisementService.getByIsActiveTrueOrderByApplicationDeadlineDesc();
+		
+		if(!result.isSuccess())
+			return new ResponseEntity<DataResult<List<JobAdvertisementForListDto>>>(result,HttpStatus.BAD_REQUEST);
+		
+		return ResponseEntity.ok(result) ;
 	}
 	
 	@GetMapping("/getByIsActiveTrueAndEmployerId")
-	public DataResult<List<JobAdvertisementForListDto>> getByIsActiveTrueAndEmployer_IdForList(@RequestParam final int id){
-		return this.jobAdvertisementService.getByIsActiveTrueAndEmployer_IdForList(id);
-	}
+	public ResponseEntity<DataResult<List<JobAdvertisementForListDto>>> getByIsActiveTrueAndEmployer_IdForList(@Valid @RequestParam final int id){
+		
+		final DataResult<List<JobAdvertisementForListDto>> result = jobAdvertisementService.getByIsActiveTrueAndEmployer_IdForList(id);
+		
+		if(!result.isSuccess())
+			return new ResponseEntity<DataResult<List<JobAdvertisementForListDto>>>(result, HttpStatus.BAD_REQUEST);
+		
+		return ResponseEntity.ok(result);
+		
+	}	
+	
+//	@ExceptionHandler(MethodArgumentNotValidException.class)
+//	@ResponseStatus(HttpStatus.BAD_REQUEST)
+//	public ErrorDataResult<Object> handleValidationException(MethodArgumentNotValidException exceptions){
+//		Map<String,String> validationErrors = new HashMap<String, String>();
+//		for (FieldError fieldError : exceptions.getBindingResult().getFieldErrors()) {
+//			validationErrors.put(fieldError.getField(), fieldError.getDefaultMessage());
+//		}
+//		
+//		ErrorDataResult<Object> errors = new ErrorDataResult<Object>(validationErrors, "Doğrulama hataları");
+//		return errors;
+//	}
+	
+	
+	
+	
+	
+	
+	
+	
 }
