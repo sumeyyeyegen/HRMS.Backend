@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+
+import kodlamaio.hrms.core.entities.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -25,15 +27,16 @@ public class Candidate extends User {
 	private int id;
 	
 	@Column(name="first_name",nullable = false,length = 20)
-	private String first_name;
+	private String firstName;
 	
 	@Column(name="last_name",nullable = false,length = 20)
-	private String last_name;
+	private String lastName;
 	
 	@Column(name="identity_number", nullable = false ,length = 11, unique = true)
-	private String identity_number;
+	private String identityNumber;
 	
 	@Column(name="birth_year",nullable = false)
-	private int birth_year;	
+	private int birthYear;	
 
+	
 }
