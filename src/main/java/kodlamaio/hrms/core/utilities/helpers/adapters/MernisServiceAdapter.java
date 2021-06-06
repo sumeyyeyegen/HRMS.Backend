@@ -19,10 +19,10 @@ public class MernisServiceAdapter implements MernisService{
 		
 		try {
 			result = client.TCKimlikNoDogrula(
-					Long.parseLong(candidate.getIdentity_number()), 
-					candidate.getFirst_name().toUpperCase(new Locale("tr")),
-					candidate.getLast_name().toUpperCase(new Locale("tr")),
-					candidate.getBirth_year());
+					Long.parseLong(candidate.getIdentityNumber() ), 
+					candidate.getFirstName().toUpperCase(new Locale("tr")),
+					candidate.getLastName().toUpperCase(new Locale("tr")),
+					candidate.getBirthYear());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
