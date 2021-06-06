@@ -1,5 +1,7 @@
 package kodlamaio.hrms.business.concretes;
 
-public class EmployeeManager {
+import kodlamaio.hrms.business.abstracts.EmployeeService;
+
+public class EmployeeManager implements EmployeeService {
 
 }

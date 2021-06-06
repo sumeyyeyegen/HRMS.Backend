@@ -1,5 +1,7 @@
 package kodlamaio.hrms.business.concretes;
 
-public class WebsiteManager {
+import kodlamaio.hrms.business.abstracts.WebsiteService;
+
+public class WebsiteManager implements WebsiteService {
 
 }

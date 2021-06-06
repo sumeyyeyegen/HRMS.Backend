@@ -1,5 +1,7 @@
 package kodlamaio.hrms.business.concretes;
 
-public class CityManager {
+import kodlamaio.hrms.business.abstracts.CityService;
+
+public class CityManager implements CityService{
 
 }

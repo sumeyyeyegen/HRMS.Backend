@@ -1,5 +1,7 @@
 package kodlamaio.hrms.business.concretes;
 
-public class CandidateCvExperienceManager {
+import kodlamaio.hrms.business.abstracts.CandidateCvExperienceService;
+
+public class CandidateCvExperienceManager implements CandidateCvExperienceService{
 
 }

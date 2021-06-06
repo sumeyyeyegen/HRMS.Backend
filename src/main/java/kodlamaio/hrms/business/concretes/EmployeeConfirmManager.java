@@ -1,5 +1,7 @@
 package kodlamaio.hrms.business.concretes;
 
-public class EmployeeConfirmManager {
+import kodlamaio.hrms.business.abstracts.EmployeeConfirmService;
+
+public class EmployeeConfirmManager implements EmployeeConfirmService {
 
 }

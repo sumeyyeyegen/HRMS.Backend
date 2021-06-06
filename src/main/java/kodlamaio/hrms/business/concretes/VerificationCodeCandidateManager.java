@@ -1,5 +1,7 @@
 package kodlamaio.hrms.business.concretes;
 
-public class VerificationCodeCandidateManager {
+import kodlamaio.hrms.business.abstracts.VerificationCodeCandidateService;
+
+public class VerificationCodeCandidateManager implements VerificationCodeCandidateService {
 
 }

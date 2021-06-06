@@ -1,5 +1,7 @@
 package kodlamaio.hrms.business.concretes;
 
-public class CandidateCvSkillManager {
+import kodlamaio.hrms.business.abstracts.CandidateCvSkillService;
+
+public class CandidateCvSkillManager implements CandidateCvSkillService {
 
 }

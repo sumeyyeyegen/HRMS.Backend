@@ -1,5 +1,7 @@
 package kodlamaio.hrms.business.concretes;
 
-public class CandidateCvLanguageManager {
+import kodlamaio.hrms.business.abstracts.CandidateCvLanguageService;
+
+public class CandidateCvLanguageManager implements CandidateCvLanguageService {
 
 }

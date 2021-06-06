@@ -1,5 +1,7 @@
 package kodlamaio.hrms.business.concretes;
 
-public class UserManager {
+import kodlamaio.hrms.business.abstracts.UserService;
+
+public class UserManager implements UserService {
 
 }
