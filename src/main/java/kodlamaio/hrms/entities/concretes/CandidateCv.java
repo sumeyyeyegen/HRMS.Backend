@@ -50,4 +50,21 @@ public class CandidateCv {
 	@JsonIgnore()
 	@OneToMany(mappedBy = "candidateCv")
 	private List<CandidateCvEducation> educations;
+	
+	@JsonIgnore()
+	@OneToMany(mappedBy = "candidateCv")
+	private List<CandidateCvExperience> experiences;
+	
+	@JsonIgnore()
+	@OneToMany(mappedBy = "candidateCv")
+	private List<CandidateCvLanguage> languages;
+	
+	@JsonIgnore()
+	@OneToMany(mappedBy = "candidateCv")
+	private List<CandidateCvSkill> skills;
+	
+	@JsonIgnore()
+	@OneToMany(mappedBy = "candidateCv")
+	private List<CandidateCvImage> images;
+
 }
