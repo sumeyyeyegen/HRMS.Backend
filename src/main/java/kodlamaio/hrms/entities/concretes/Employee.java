@@ -9,6 +9,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import kodlamaio.hrms.core.entities.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,6 +26,7 @@ import lombok.NoArgsConstructor;
 public class Employee extends User {	
 	@Id
 	@Column(name="id")
+	@JsonIgnore()
 	@PrimaryKeyJoinColumn(name="id",referencedColumnName = "id")
 	private int id;
 
@@ -32,9 +35,4 @@ public class Employee extends User {
 	
 	@Column(name="last_name",nullable = false,length = 35)
 	private String last_name;
-	
-	@OneToOne
-	@JoinColumn(name="id")
-	@MapsId
-	private User fk_employees_users;
 }

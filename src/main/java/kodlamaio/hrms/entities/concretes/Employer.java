@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import kodlamaio.hrms.core.entities.User;
@@ -26,6 +28,7 @@ import lombok.NoArgsConstructor;
 public class Employer extends User {
 	@Id
 	@Column(name="id")
+	@JsonIgnore
 	@PrimaryKeyJoinColumn(name="id",referencedColumnName = "id")
 	private int id;
 	
@@ -38,6 +41,7 @@ public class Employer extends User {
 	@Column(name="phone_number",nullable = false,length = 12)
 	private String phoneNumber;
 	
+	@JsonIgnore()
 	@OneToMany(mappedBy = "employer")
 	private List<JobAdvertisement> jobAdvertisements;
 	
