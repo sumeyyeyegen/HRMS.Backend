@@ -11,6 +11,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,17 +23,15 @@ import lombok.NoArgsConstructor;
 @Table(name="candidate_cv_languages")
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","CandidateCvLanguage"})
+
 public class CandidateCvLanguage {
-	@NotNull
+	
 	@Id
+	@NotNull
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
 	private int id;
-	
-	@ManyToOne
-	@JoinColumn(name="candidate_cv_id")
-	@NotNull
-	private CandidateCv candidateCv;
 	
 	@NotNull
 	@Column(name="language_name")
@@ -43,5 +44,10 @@ public class CandidateCvLanguage {
 	@NotNull
 	@Column(name = "created_at", columnDefinition = "Date default CURRENT_DATE")
 	private final LocalDateTime createAt = LocalDateTime.now();
-	
+
+	@NotNull
+	@JsonIgnore()
+	@ManyToOne
+	@JoinColumn(name="candidate_cv_id")
+	private CandidateCv candidateCv;
 }
