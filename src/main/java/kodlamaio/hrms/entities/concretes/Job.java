@@ -9,6 +9,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -22,20 +27,27 @@ import lombok.NoArgsConstructor;
 @Table(name="jobs")
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","JobAdvertisement"})
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","Job"})
+
 public class Job {
+	
 	@Id
-	@Column(name="id",nullable = false)
+	@NotNull
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="id")
 	private int id;
 	
-	@Column(name="title",nullable = false,length = 255)
+	@NotNull
+	@Length(max = 255)
+	@Column(name="title")
 	private String title;
 	
+	@NotNull
 	@JsonIgnore()
 	@OneToMany(mappedBy="job")
 	private List<JobAdvertisement> jobAdvertisements;
 	
+	@NotNull
 	@JsonIgnore()
 	@OneToMany(mappedBy = "job")
 	private List<CandidateCvExperience> experiences;
