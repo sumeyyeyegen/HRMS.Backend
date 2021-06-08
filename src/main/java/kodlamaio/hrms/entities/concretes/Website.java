@@ -9,7 +9,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.Length;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,18 +23,22 @@ import lombok.NoArgsConstructor;
 @Table(name="web_sites")
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","Website"})
 
 public class Website {
+	
 	@NotNull
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	@NotNull
-	@Column(name="name",length = 50)
+	@Length(max = 50)
+	@Column(name="name")
 	private String name;
 	
+	@NotNull
 	@JsonIgnore()
 	@OneToMany(mappedBy = "website")
 	private List<CandidateCvWebsite> websites;
