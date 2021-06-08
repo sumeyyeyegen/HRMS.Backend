@@ -13,6 +13,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.Length;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,25 +27,19 @@ import lombok.NoArgsConstructor;
 @Table(name="candidate_cv_experiences")
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","CandidateCvExperience"})
+
 public class CandidateCvExperience {
-	@NotNull
+	
 	@Id
+	@NotNull
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
 	private int id;
 	
 	@NotNull
-	@JoinColumn(name="candidate_cv_id")
-	@ManyToOne
-	private CandidateCv candidateCv;
-	
-	@NotNull
-	@JoinColumn(name="job_id")
-	@ManyToOne
-	private Job job;
-	
-	@NotNull
-	@Column(name="work_place_name", length = 50)
+	@Length(max=50)
+	@Column(name="work_place_name")
 	private String workPlaceName;
 	
 	@NotNull
@@ -54,4 +53,15 @@ public class CandidateCvExperience {
 	@Column(name = "created_at", columnDefinition = "Date default CURRENT_DATE")
 	private final LocalDateTime createAt = LocalDateTime.now();
 	
+	@NotNull
+	@JsonIgnore()
+	@ManyToOne
+	@JoinColumn(name="candidate_cv_id")
+	private CandidateCv candidateCv;
+	
+	@NotNull
+	@JsonIgnore()
+	@ManyToOne
+	@JoinColumn(name="job_id")
+	private Job job;
 }

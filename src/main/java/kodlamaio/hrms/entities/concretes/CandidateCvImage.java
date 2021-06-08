@@ -12,6 +12,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.Length;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,24 +26,28 @@ import lombok.NoArgsConstructor;
 @Table(name="candidate_cv_images")
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","CandidateCvImage"})
 
 public class CandidateCvImage {
+	
 	@Id
+	@NotNull
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
-	@NotNull
 	private int id;
 	
-	@ManyToOne
-	@JoinColumn(name="candidate_cv_id")
 	@NotNull
-	private CandidateCv candidateCv;
-	
-	@NotNull
-	@Column(name="image_url",length = 255)
+	@Length(max=255)
+	@Column(name="image_url")
 	private String imageUrl;
 	
 	@NotNull
 	@Column(name = "created_at", columnDefinition = "Date default CURRENT_DATE")
 	private final LocalDateTime createAt = LocalDateTime.now();
+
+	@NotNull
+	@JsonIgnore()
+	@ManyToOne
+	@JoinColumn(name="candidate_cv_id")
+	private CandidateCv candidateCv;
 }
