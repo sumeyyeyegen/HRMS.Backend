@@ -12,6 +12,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.Length;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,26 +26,34 @@ import lombok.NoArgsConstructor;
 @Table(name="candidate_cv_web_sites")
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","CandidateCvWebsite"})
+
 public class CandidateCvWebsite {
+	
 	@Id
+	@NotNull
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="id")
 	private int id;
 	
-	@ManyToOne
-	@JoinColumn(name="candidate_cv_id")
 	@NotNull
-	private CandidateCv candidateCv;
-	
-	@ManyToOne
-	@JoinColumn(name="web_site_id")
-	@NotNull
-	private Website website;
-	
-	@NotNull
-	@Column(name="address",length = 200)
+	@Length(max = 200)
+	@Column(name="address")
 	private String address;
 	
 	@NotNull
 	@Column(name = "created_at", columnDefinition = "Date default CURRENT_DATE")
 	private final LocalDateTime createAt = LocalDateTime.now();
+	
+	@NotNull
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name="candidate_cv_id")
+	private CandidateCv candidateCv;
+	
+	@NotNull
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name="web_site_id")
+	private Website website;
 }
