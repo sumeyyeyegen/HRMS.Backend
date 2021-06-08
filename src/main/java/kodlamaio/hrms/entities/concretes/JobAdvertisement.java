@@ -1,6 +1,6 @@
 package kodlamaio.hrms.entities.concretes;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,8 +9,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,46 +25,61 @@ import lombok.NoArgsConstructor;
 @Table(name="job_advertisements")
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","JobAdvertisement"})
+
 public class JobAdvertisement {
+	
 	@Id
+	@NotNull
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id", nullable = false)
+	@Column(name="id")
 	private int id;
 	
-	@JsonIgnore()
-	@ManyToOne
-	@JoinColumn(name="employer_id", nullable = false)
-	private Employer employer;
+	@NotNull
+	@Length(max = 500)
+	@Column(name="job_description")
+	private String jobDescription;
 	
-	@JsonIgnore()
-	@ManyToOne
-	@JoinColumn(name = "city_id", nullable = false)
-	private City city;
+	@NotNull
+	@Column(name="open_positions")
+	private int openPositions;
 	
-	@JsonIgnore()
-	@ManyToOne
-	@JoinColumn(name = "job_id", nullable = false)
-	private Job job;
+	@NotNull
+	@Column(name="is_active")
+	private boolean isActive;
 	
+	@NotNull
+	@Column(name="application_deadline")
+	private LocalDateTime applicationDeadline;
+	
+	@NotNull
+	@Column(name="release_date")
+	private LocalDateTime releaseDate;
+	
+	@NotNull
 	@Column(name="min_salary")
 	private int minSalary;
 	
+	@NotNull
 	@Column(name="max_salary")
 	private int maxSalary;
 	
-	@Column(name="job_description", nullable = false, length = 500)
-	private String jobDescription;
+	@NotNull
+	@JsonIgnore()
+	@ManyToOne
+	@JoinColumn(name="employer_id")
+	private Employer employer;
 	
-	@Column(name="open_positions", nullable = false)
-	private int openPositions;
+	@NotNull
+	@JsonIgnore()
+	@ManyToOne
+	@JoinColumn(name = "city_id")
+	private City city;
 	
-	@Column(name="application_deadline", nullable = false, length = 50)
-	private Date applicationDeadline;
-	
-	@Column(name="is_active", nullable = false)
-	private boolean isActive;
-	
-	@Column(name="release_date", nullable = false, length = 50)
-	private Date releaseDate;
+	@NotNull
+	@JsonIgnore()
+	@ManyToOne
+	@JoinColumn(name = "job_id")
+	private Job job;
 	
 }
