@@ -2,8 +2,6 @@ package kodlamaio.hrms.entities.concretes;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,6 +12,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.Length;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,25 +26,23 @@ import lombok.NoArgsConstructor;
 @Table(name="candidate_cv_educations")
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","CandidateCvEducation"})
 
 public class CandidateCvEducation {
-	@NotNull
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@NotNull
 	@Column(name="id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	@NotNull
-	@JoinColumn(name="candidate_cv_id")
-	@ManyToOne
-	private CandidateCv candidateCv;
-	
-	@NotNull
-	@Column(name="school_name", length = 100)
+	@Length(max = 100)
+	@Column(name="school_name")
 	private String schoolName;
 
 	@NotNull
-	@Column(name="department_name", length = 100)
+	@Length(max = 100)
+	@Column(name="department_name")
 	private String departmentName;
 	
 	@NotNull
@@ -51,6 +52,13 @@ public class CandidateCvEducation {
 	@Column(name="graduation_date")
 	private LocalDate graduationDate;
 	
+	@NotNull
 	@Column(name = "created_at", columnDefinition = "Date default CURRENT_DATE")
 	private final LocalDateTime createAt = LocalDateTime.now();
+	
+	@NotNull
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name="candidate_cv_id")
+	private CandidateCv candidateCv;
 }

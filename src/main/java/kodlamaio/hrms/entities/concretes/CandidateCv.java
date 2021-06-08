@@ -14,7 +14,10 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.Length;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,22 +28,19 @@ import lombok.NoArgsConstructor;
 @Table(name="candidate_cvs")
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","CandidateCv"})
 
 public class CandidateCv {
 	
-	@NotNull
 	@Id
+	@NotNull
 	@Column(name="id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@OneToOne
 	@NotNull
-	@JoinColumn(name="candidate_id")
-	private Candidate candidate;
-	
-	@NotNull
-	@Column(name="cover_letter", length = 255 )
+	@Length(max=255)
+	@Column(name="cover_letter")
 	private String coverLetter;
 	
 	@NotNull
@@ -66,5 +66,11 @@ public class CandidateCv {
 	@JsonIgnore()
 	@OneToMany(mappedBy = "candidateCv")
 	private List<CandidateCvImage> images;
+	
+	@NotNull
+	@JsonIgnore
+	@OneToOne
+	@JoinColumn(name="candidate_id")
+	private Candidate candidate;
 
 }
