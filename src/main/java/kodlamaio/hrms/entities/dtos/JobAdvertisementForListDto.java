@@ -1,7 +1,6 @@
 package kodlamaio.hrms.entities.dtos;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotBlank;
@@ -37,9 +36,9 @@ public class JobAdvertisementForListDto {
 	
 	@Past
 	@JsonFormat(pattern = "yyyy-MM-dd")
-	private Date releaseDate;
+	private LocalDateTime releaseDate;
 	
 	@Future
 	@JsonFormat(pattern = "yyyy-MM-dd")
-	private Date applicationDeadline;
+	private LocalDateTime applicationDeadline;
 }
