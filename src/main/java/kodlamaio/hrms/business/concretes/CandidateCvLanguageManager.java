@@ -6,27 +6,32 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.CandidateCvLanguageService;
+import kodlamaio.hrms.core.utilities.dtoConverter.DtoConverterService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.CandidateCvLanguageDao;
+import kodlamaio.hrms.entities.concretes.CandidateCvExperience;
 import kodlamaio.hrms.entities.concretes.CandidateCvLanguage;
+import kodlamaio.hrms.entities.dtos.CvLanguagesForAddDto;
 
 @Service
 public class CandidateCvLanguageManager implements CandidateCvLanguageService {
 	
 	private CandidateCvLanguageDao candidateCvLanguageDao;
+	private DtoConverterService dtoConverterService;
 	
 	@Autowired
-	public CandidateCvLanguageManager(CandidateCvLanguageDao candidateCvLanguageDao) {
+	public CandidateCvLanguageManager(CandidateCvLanguageDao candidateCvLanguageDao,DtoConverterService dtoConverterService) {
 		super();
 		this.candidateCvLanguageDao = candidateCvLanguageDao;
+		this.dtoConverterService = dtoConverterService;
 	}
 
 	@Override
-	public Result add(CandidateCvLanguage candidateCvLanguage) {
-		candidateCvLanguageDao.save(candidateCvLanguage);
+	public Result addLanguages(CvLanguagesForAddDto cvLanguagesForAddDto) {
+		candidateCvLanguageDao.save((CandidateCvLanguage) dtoConverterService.dtoClassConverter(cvLanguagesForAddDto, CandidateCvLanguage.class));
 		return new SuccessResult("Ekleme işlemi başarıyla gerçekleştirildi");
 	}
 
@@ -50,6 +55,12 @@ public class CandidateCvLanguageManager implements CandidateCvLanguageService {
 
 	@Override
 	public Result update(CandidateCvLanguage candidateCvLanguage) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Result add(CandidateCvLanguage entity) {
 		// TODO Auto-generated method stub
 		return null;
 	}
