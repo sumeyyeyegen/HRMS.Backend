@@ -16,12 +16,6 @@ public class EmployeeConfirmEmployerManager implements EmployeeConfirmEmployerSe
 	}
 
 	@Override
-	public Result delete(EmployeeConfirmEmployer entity) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public DataResult<List<EmployeeConfirmEmployer>> getAll() {
 		// TODO Auto-generated method stub
 		return null;
@@ -41,6 +35,12 @@ public class EmployeeConfirmEmployerManager implements EmployeeConfirmEmployerSe
 
 	@Override
 	public DataResult<EmployeeConfirmEmployer> getByUserId(int userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Result delete(EmployeeConfirmEmployer employeeConfirmEmployer) {
 		// TODO Auto-generated method stub
 		return null;
 	}
