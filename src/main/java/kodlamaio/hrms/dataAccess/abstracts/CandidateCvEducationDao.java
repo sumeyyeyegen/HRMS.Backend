@@ -11,6 +11,9 @@ import kodlamaio.hrms.entities.dtos.JobAdvertisementForListDto;
 
 public interface CandidateCvEducationDao extends JpaRepository<CandidateCvEducation, Integer>{
 	
-	DataResult<List<CandidateCvEducation>> getByAllCandidateCv_Id(int jobSeekerId);
-	
+	List<CandidateCvEducation> getByCandidateCvEducations_Id(int id);
+
+	List<CandidateCvEducation> getAllByCandidateCvIdOrderByGraduationDateDesc(int candidateCvId);
+
+	List<CandidateCvEducation> getAllByCandidateCvIdOrderByGraduationDateAsc(int candidateCvId);
 }

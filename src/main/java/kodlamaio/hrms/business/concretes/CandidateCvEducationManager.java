@@ -1,6 +1,7 @@
 package kodlamaio.hrms.business.concretes;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,7 @@ import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.CandidateCvEducationDao;
 import kodlamaio.hrms.entities.concretes.CandidateCvEducation;
+import kodlamaio.hrms.entities.dtos.JobAdvertisementForListDto;
 
 @Service
 public class CandidateCvEducationManager implements CandidateCvEducationService {
@@ -43,10 +45,10 @@ public class CandidateCvEducationManager implements CandidateCvEducationService 
 	}
 
 	@Override
-	public DataResult<List<CandidateCvEducation>> getByAllCandidateCv_Id(int id) {
-		final List<CandidateCvEducation> candidateCvEducations = candidateCvEducationDao.getByAllCandidateCv_Id(id);
-		
-		return 
+	public DataResult<List<CandidateCvEducation>> getByCandidateCvEducations_Id(int id) {
+		final List<CandidateCvEducation> candidateCVEducations = candidateCvEducationDao.getByCandidateCvEducations_Id(id);
+
+		return new SuccessDataResult<List<CandidateCvEducation>>(candidateCVEducations, "Veriler başarılı bir şekilde getirildi.");
 	}
 
 	@Override
@@ -59,6 +61,16 @@ public class CandidateCvEducationManager implements CandidateCvEducationService 
 	public DataResult<CandidateCvEducation> getById(Integer id) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public DataResult<List<CandidateCvEducation>> getAllByCandidateCvIdOrderByGraduationDateDesc(int candidateCvId) {
+		return new SuccessDataResult<List<CandidateCvEducation>>(candidateCvEducationDao.getAllByCandidateCvIdOrderByGraduationDateDesc(candidateCvId),"Data listelendi.");
+	}
+
+	@Override
+	public DataResult<List<CandidateCvEducation>> getAllByCandidateCvIdOrderByGraduationDateAsc(int candidateCvId) {
+		return new SuccessDataResult<List<CandidateCvEducation>>(candidateCvEducationDao.getAllByCandidateCvIdOrderByGraduationDateAsc(candidateCvId),"Data listelendi.");
 	}
 
 }

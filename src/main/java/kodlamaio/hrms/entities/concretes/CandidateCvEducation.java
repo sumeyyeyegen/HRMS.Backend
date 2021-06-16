@@ -2,6 +2,8 @@ package kodlamaio.hrms.entities.concretes;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,7 +15,9 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -46,18 +50,19 @@ public class CandidateCvEducation {
 	private String departmentName;
 	
 	@NotNull
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	@Column(name="start_date")
 	private LocalDate startDate;
 	
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	@Column(name="graduation_date")
 	private LocalDate graduationDate;
 	
-	@NotNull
-	@Column(name = "created_at", columnDefinition = "Date default CURRENT_DATE")
-	private final LocalDateTime createAt = LocalDateTime.now();
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+	@Column(name = "created_at")
+	private final LocalDateTime createAt = LocalDateTime.now(ZoneId.of("Asia/Istanbul"));
 	
 	@NotNull
-	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="candidate_cv_id")
 	private CandidateCv candidateCv;

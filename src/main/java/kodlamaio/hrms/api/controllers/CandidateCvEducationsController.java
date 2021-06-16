@@ -21,11 +21,11 @@ import kodlamaio.hrms.entities.concretes.CandidateCvEducation;
 @RestController
 @RequestMapping("/api/candidate/cvs/educations")
 
-public class CandidateCvEducationController {
+public class CandidateCvEducationsController {
 	private CandidateCvEducationService candidateCvEducationService;
 
 	@Autowired
-	public CandidateCvEducationController(CandidateCvEducationService candidateCvEducationService) {
+	public CandidateCvEducationsController(CandidateCvEducationService candidateCvEducationService) {
 		super();
 		this.candidateCvEducationService = candidateCvEducationService;
 	}
@@ -52,8 +52,22 @@ public class CandidateCvEducationController {
 	}
 	
 	@GetMapping("/getall/bycandidatecvid")
-	public ResponseEntity<DataResult<CandidateCvEducation>> getById(int id) {
-		final DataResult<CandidateCvEducation> result = candidateCvEducationService.getById(id);
+	public ResponseEntity<DataResult<List<CandidateCvEducation>>> getByCandidateCvEducations_Id(int id) {
+		final DataResult<List<CandidateCvEducation>> result = candidateCvEducationService.getByCandidateCvEducations_Id(id);
+
+		return ResponseEntity.ok(result);
+	}
+	
+	@GetMapping("/getall/bycandidatecvgraduationdatedesc")
+	public ResponseEntity<DataResult<List<CandidateCvEducation>>> getByCandidateCvEducations_IdOrderByGraduationDateDesc(int id) {
+		final DataResult<List<CandidateCvEducation>> result = candidateCvEducationService.getAllByCandidateCvIdOrderByGraduationDateDesc(id);
+
+		return ResponseEntity.ok(result);
+	}
+	
+	@GetMapping("/getall/bycandidatecvgraduationdateasc")
+	public ResponseEntity<DataResult<List<CandidateCvEducation>>> getByCandidateCvEducations_IdOrderByGraduationDateAsc(int id) {
+		final DataResult<List<CandidateCvEducation>> result = candidateCvEducationService.getAllByCandidateCvIdOrderByGraduationDateAsc(id);
 
 		return ResponseEntity.ok(result);
 	}
