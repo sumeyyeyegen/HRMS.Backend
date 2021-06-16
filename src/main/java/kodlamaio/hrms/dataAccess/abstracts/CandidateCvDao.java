@@ -1,5 +1,11 @@
 package kodlamaio.hrms.dataAccess.abstracts;
 
-public interface CandidateCvDao {
+import java.util.Optional;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import kodlamaio.hrms.entities.concretes.CandidateCv;
+
+public interface CandidateCvDao extends JpaRepository<CandidateCv, Integer> {
+	Optional<CandidateCv> getById(int id);
+	
 }
