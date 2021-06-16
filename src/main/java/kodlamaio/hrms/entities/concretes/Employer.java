@@ -32,7 +32,6 @@ public class Employer extends User {
 	
 	@Id
 	@NotNull
-	@JsonIgnore()
 	@Column(name="id")
 	@PrimaryKeyJoinColumn(name="id",referencedColumnName = "id")
 	private int id;

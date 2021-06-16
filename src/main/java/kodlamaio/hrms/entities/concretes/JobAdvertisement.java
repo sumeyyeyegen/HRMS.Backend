@@ -65,19 +65,16 @@ public class JobAdvertisement {
 	private int maxSalary;
 	
 	@NotNull
-	@JsonIgnore()
 	@ManyToOne
 	@JoinColumn(name="employer_id")
 	private Employer employer;
 	
 	@NotNull
-	@JsonIgnore()
 	@ManyToOne
 	@JoinColumn(name = "city_id")
 	private City city;
 	
 	@NotNull
-	@JsonIgnore()
 	@ManyToOne
 	@JoinColumn(name = "job_id")
 	private Job job;
