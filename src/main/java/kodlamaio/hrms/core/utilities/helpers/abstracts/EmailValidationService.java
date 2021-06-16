@@ -1,5 +1,7 @@
 package kodlamaio.hrms.core.utilities.helpers.abstracts;
 
+import kodlamaio.hrms.core.entities.User;
+
 public interface EmailValidationService {
-	boolean emailValidation(String email);
+	boolean emailValidation(User user);
 }
