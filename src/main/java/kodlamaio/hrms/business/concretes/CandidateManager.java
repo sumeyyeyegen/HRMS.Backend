@@ -40,15 +40,29 @@ public class CandidateManager implements CandidateService {
 	}
 
 	@Override
-	public Result register(Candidate candidate) {
+	public Result register( Candidate candidate) {
 		Result result = new ErrorResult("Kayıt işlemi başarısız");
-		if(emailValidationService.emailValidation(candidate.getEmail()) 
-			&& mernisService.checkIfRealPerson(candidate)) {
-			emailService.sendEmail("Kayıt işleminin gerçekleşmesi için tarafınıza mail gönderilmiştir.");
-			candidateDao.save(candidate);
-			result =  new SuccessResult("Kayıt işlemi başarılı");
+		if(!mernisService.checkIfRealPerson(candidate))
+			return new ErrorResult("Geçerli bir kullanıcı değil.");
+		
+		if(!emailValidationService.emailValidation(candidate))
+			return new ErrorResult("Lütfen emailinizi doğrulayın");
+		
+		if(!candidateExists(candidate.getEmail(), candidate.getIdentityNumber()))
+			return new ErrorResult("Kullanılmamış email ve kimlik numarasını giriniz");
+		
+//		candidate.getVerificationCodeCandidate().setVerified(true);
+		candidateDao.save(candidate);
+		
+		return new SuccessResult("Kullanıcı başarılı bir şekilde kayıt edildi.");
+	}
+	
+	private boolean candidateExists(String email, String indentityNumber) {
+		if (this.candidateDao.getByEmail(email) == null && 
+				this.candidateDao.getByIdentityNumber(indentityNumber) == null) {
+			return true;
 		}
-		return result;
+		return false;
 	}
 
 }
