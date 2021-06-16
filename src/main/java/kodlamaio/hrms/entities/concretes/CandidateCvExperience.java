@@ -54,13 +54,11 @@ public class CandidateCvExperience {
 	private final LocalDateTime createAt = LocalDateTime.now();
 	
 	@NotNull
-	@JsonIgnore()
 	@ManyToOne
 	@JoinColumn(name="candidate_cv_id")
 	private CandidateCv candidateCv;
 	
 	@NotNull
-	@JsonIgnore()
 	@ManyToOne
 	@JoinColumn(name="job_id")
 	private Job job;
