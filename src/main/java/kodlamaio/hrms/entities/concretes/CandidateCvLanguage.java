@@ -23,7 +23,7 @@ import lombok.NoArgsConstructor;
 @Table(name="candidate_cv_languages")
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","CandidateCvLanguage"})
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","CandidateCv"})
 
 public class CandidateCvLanguage {
 	
