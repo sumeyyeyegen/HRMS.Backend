@@ -53,28 +53,22 @@ public class CandidateCv {
 	@Column(name = "created_at", columnDefinition = "Date default CURRENT_DATE")
 	private final LocalDateTime createdAt = LocalDateTime.now();
 	
-	@JsonIgnore()
 	@OneToMany(mappedBy = "candidateCv")
 	private List<CandidateCvEducation> educations;
 	
-	@JsonIgnore()
 	@OneToMany(mappedBy = "candidateCv")
 	private List<CandidateCvExperience> experiences;
 	
-	@JsonIgnore()
 	@OneToMany(mappedBy = "candidateCv")
 	private List<CandidateCvLanguage> languages;
 	
-	@JsonIgnore()
 	@OneToMany(mappedBy = "candidateCv")
 	private List<CandidateCvSkill> skills;
 	
-	@JsonIgnore()
 	@OneToMany(mappedBy = "candidateCv")
 	private List<CandidateCvImage> images;
 	
 	@NotNull
-	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name="candidate_id")
 	private Candidate candidate;
