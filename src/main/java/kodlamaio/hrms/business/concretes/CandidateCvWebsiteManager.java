@@ -63,6 +63,12 @@ public class CandidateCvWebsiteManager implements CandidateCvWebsiteService {
 		return null;
 	}
 
+	@Override
+	public DataResult<List<CandidateCvWebsite>> getByCandidateCvId(int candidateCvId) {
+		List<CandidateCvWebsite> websites = candidateCvWebsiteDao.getByCandidateCv_Id(candidateCvId);
+		return new SuccessDataResult<List<CandidateCvWebsite>>(websites, "Veriler başarılı bir şekilde getirildi.");
+	}
+
 
 	
 	
