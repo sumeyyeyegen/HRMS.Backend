@@ -26,7 +26,7 @@ import lombok.NoArgsConstructor;
 @Table(name="candidate_cv_web_sites")
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","CandidateCv"})
+//@JsonIgnoreProperties({"hibernateLazyInitializer","handler","CandidateCv"})
 
 public class CandidateCvWebsite {
 	
