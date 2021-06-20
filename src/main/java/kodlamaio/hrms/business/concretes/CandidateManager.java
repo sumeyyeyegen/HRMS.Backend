@@ -65,4 +65,11 @@ public class CandidateManager implements CandidateService {
 		return false;
 	}
 
+	@Override
+	public DataResult<Candidate> getByCandidateCvId(int candidateCvId) {
+		Candidate candidate = candidateDao.getByCandidateCv_Id(candidateCvId);
+		
+		return new SuccessDataResult<Candidate>(candidate, "Veri başarılı bir şekilde getirildi");
+	}
+
 }
