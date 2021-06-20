@@ -9,6 +9,7 @@ import kodlamaio.hrms.business.abstracts.CandidateCvSkillService;
 import kodlamaio.hrms.core.utilities.dtoConverter.DtoConverterService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
+import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.CandidateCvSkillDao;
 import kodlamaio.hrms.entities.concretes.CandidateCvLanguage;
@@ -62,6 +63,12 @@ public class CandidateCvSkillManager implements CandidateCvSkillService {
 	public Result addSkills(CvSkillForAddDto cvSkillForAddDto) {
 		candidateCvSkillDao.save((CandidateCvSkill) dtoConverterService.dtoClassConverter(cvSkillForAddDto, CandidateCvSkill.class));
 		return new SuccessResult("Ekleme işlemi başarıyla gerçekleştirildi");
+	}
+
+	@Override
+	public DataResult<List<CandidateCvSkill>> getByCandidateCvId(int candidateCvId) {
+		List<CandidateCvSkill> skills = candidateCvSkillDao.getByCandidateCv_Id(candidateCvId);
+		return new SuccessDataResult<List<CandidateCvSkill>>(skills, "Veriler başarılı bir şekilde getirildi");
 	}
 
 }
