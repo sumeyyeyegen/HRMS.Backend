@@ -65,4 +65,10 @@ public class CandidateCvLanguageManager implements CandidateCvLanguageService {
 		return null;
 	}
 
+	@Override
+	public DataResult<List<CandidateCvLanguage>> getByCandidateCvId(int candidateCvId) {
+		List<CandidateCvLanguage> languages = candidateCvLanguageDao.getByCandidateCv_Id(candidateCvId);
+		return new SuccessDataResult<List<CandidateCvLanguage>>(languages, "Veriler başarılı bir şekilde getirildi.") ;
+	}
+
 }
