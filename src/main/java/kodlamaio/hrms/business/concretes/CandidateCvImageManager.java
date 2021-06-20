@@ -11,6 +11,7 @@ import kodlamaio.hrms.business.abstracts.CandidateCvImageService;
 import kodlamaio.hrms.core.utilities.helpers.image.ImageService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
+import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.CandidateCvImageDao;
 import kodlamaio.hrms.entities.concretes.CandidateCvImage;
@@ -64,6 +65,12 @@ public class CandidateCvImageManager implements CandidateCvImageService{
 	public Result update(CandidateCvImage entity) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public DataResult<CandidateCvImage> getByCandidateCvId(int candidateCvId) {
+		CandidateCvImage image = candidateCvImageDao.getByCandidateCv_Id(candidateCvId);
+		return new SuccessDataResult<CandidateCvImage>(image, "Veri başarılı bir şekilde getirildi.");
 	}
 
 
