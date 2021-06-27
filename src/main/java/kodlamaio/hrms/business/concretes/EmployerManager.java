@@ -34,10 +34,16 @@ public class EmployerManager implements EmployerService {
 	public DataResult<List<Employer>> getAll() {
 		return new SuccessDataResult<List<Employer>>(employerDao.findAll(), "Veriler başarıyla listelendi.");
 	}
+	
+	private boolean employerExists(String email) {
+		if (this.employerDao.getByEmail(email) == null) {
+			return true;
+		}
+		return false;
+	}
 
 	@Override
-	public Result register(Employer employer) {
-		Result result = new ErrorResult("Kayıt işlemi başarısız");
+	public Result add(Employer employer) {
 		if(!emailValidationService.emailValidation(employer))
 			return new ErrorResult("Lütfen emailinizi doğrulayın");
 		
@@ -49,12 +55,23 @@ public class EmployerManager implements EmployerService {
 		
 		return new SuccessResult("Kullanıcı başarılı bir şekilde kayıt edildi.");
 	}
-	
-	private boolean employerExists(String email) {
-		if (this.employerDao.getByEmail(email) == null) {
-			return true;
-		}
-		return false;
+
+	@Override
+	public Result delete(Employer entity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public DataResult<Employer> getById(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Result update(Employer entity) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
