@@ -9,6 +9,7 @@ import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,25 +21,21 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 @EqualsAndHashCode
-@AllArgsConstructor
 
 public class JobAdvertisementForListDto {
-	@NotBlank
-	@Size(max = 255, min = 0)
+	@JsonIgnore
+	private int id;
 	private String companyName;
-	
-	@NotBlank
-	@Size(max = 255, min = 0)
 	private String title;
-	
-	@Positive
 	private int openPositions;
-	
-	@Past
-	@JsonFormat(pattern = "yyyy-MM-dd")
 	private LocalDateTime releaseDate;
-	
-	@Future
-	@JsonFormat(pattern = "yyyy-MM-dd")
 	private LocalDateTime applicationDeadline;
+	
+	public JobAdvertisementForListDto(String companyName,String title,int openPositions,LocalDateTime releaseDate,LocalDateTime applicationDeadline) {
+		this.companyName=companyName;
+		this.title=title;
+		this.openPositions=openPositions;
+		this.releaseDate=releaseDate;
+		this.applicationDeadline=applicationDeadline;
+	}
 }
