@@ -72,4 +72,28 @@ public class CandidateManager implements CandidateService {
 		return new SuccessDataResult<Candidate>(candidate, "Veri başarılı bir şekilde getirildi");
 	}
 
+	@Override
+	public Result add(Candidate entity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Result delete(Candidate entity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public DataResult<Candidate> getById(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Result update(Candidate entity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
