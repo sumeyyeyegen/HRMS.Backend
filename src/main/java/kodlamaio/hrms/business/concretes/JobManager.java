@@ -22,16 +22,34 @@ public class JobManager implements JobService {
 	public JobManager(JobDao jobDao) {
 		this.jobDao=jobDao;
 	}
-	
+
 	@Override
-	public Result addJob(Job job) {
+	public DataResult<List<Job>> getAll() {
+		return new SuccessDataResult<List<Job>>(jobDao.findAll(), "İş pozisyonları başarıyla listelendi.");
+	}
+
+	@Override
+	public Result add(Job job) {
 		jobDao.save(job);
 		return new SuccessResult("İş pozisyonu başarıyla eklendi.");
 	}
 
 	@Override
-	public DataResult<List<Job>> getAll() {
-		return new SuccessDataResult<List<Job>>(jobDao.findAll(), "İş pozisyonları başarıyla listelendi.");
+	public Result delete(Job entity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public DataResult<Job> getById(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Result update(Job entity) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }
