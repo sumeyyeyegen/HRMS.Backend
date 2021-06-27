@@ -2,6 +2,7 @@ package kodlamaio.hrms.api.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,6 +18,7 @@ import kodlamaio.hrms.entities.concretes.CandidateCv;
 import kodlamaio.hrms.entities.concretes.CandidateCvImage;
 import kodlamaio.hrms.entities.dtos.CvExperiencesForAddDto;
 
+@CrossOrigin()
 @RestController
 @RequestMapping("/api/candidate/cvs/images")
 
