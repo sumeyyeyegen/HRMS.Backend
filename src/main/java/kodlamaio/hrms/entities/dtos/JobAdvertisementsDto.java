@@ -10,6 +10,7 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import kodlamaio.hrms.entities.concretes.City;
 import kodlamaio.hrms.entities.concretes.Employer;
@@ -26,49 +27,17 @@ import lombok.ToString;
 @EqualsAndHashCode
 @AllArgsConstructor
 
-public class JobAdvertisementsForUpdateDto {
-	@NotNull
-	@Length(max = 500)
-	@Column(name="job_description")
+public class JobAdvertisementsDto {
+	@JsonIgnore
+	private int id;
+	private int jobId;
 	private String jobDescription;
-	
-	@NotNull
-	@Column(name="open_positions")
 	private int openPositions;
-	
-	@NotNull
-	@Column(name="is_active")
 	private boolean isActive;
-	
-	@NotNull
-	@Column(name="application_deadline")
 	private LocalDateTime applicationDeadline;
-	
-	@NotNull
-	@Column(name="release_date")
 	private LocalDateTime releaseDate;
-	
-	@NotNull
-	@Column(name="min_salary")
 	private int minSalary;
-	
-	@NotNull
-	@Column(name="max_salary")
 	private int maxSalary;
-	
-	@NotNull
-	@ManyToOne
-	@JoinColumn(name="employer_id")
-	private Employer employer;
-	
-	@NotNull
-	@ManyToOne
-	@JoinColumn(name = "city_id")
-	private City city;
-	
-	@NotNull
-	@ManyToOne
-	@JoinColumn(name = "job_id")
-	private Job job;
-	
+	private int employerId;
+	private int cityId;
 }
