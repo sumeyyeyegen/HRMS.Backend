@@ -5,6 +5,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,7 +17,9 @@ import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
 import kodlamaio.hrms.entities.dtos.JobAdvertisementForListDto;
+import kodlamaio.hrms.entities.dtos.JobAdvertisementsDto;
 
+@CrossOrigin()
 @RestController
 @RequestMapping("/api/jobadvertisements")
 public class JobAdvertisementsController {
@@ -29,8 +32,8 @@ public class JobAdvertisementsController {
 	}	
 	
 	@PostMapping("/add")
-	public ResponseEntity<Result> add(@Valid @RequestBody final JobAdvertisement jobAdvertisement) {
-		final Result result = jobAdvertisementService.add(jobAdvertisement);
+	public ResponseEntity<Result> add(@Valid @RequestBody final JobAdvertisementsDto jobAdvertisementsDto) {
+		final Result result = jobAdvertisementService.addJobAdvertisements(jobAdvertisementsDto);
 
 		if (!result.isSuccess())
 			return new ResponseEntity<Result>(result, HttpStatus.BAD_REQUEST);
@@ -54,7 +57,7 @@ public class JobAdvertisementsController {
 
 		if (!result.isSuccess())
 			return new ResponseEntity<Result>(result, HttpStatus.BAD_REQUEST);
-
+ 
 		return ResponseEntity.ok(result);
 	}
 	
@@ -69,19 +72,19 @@ public class JobAdvertisementsController {
 	}
 	
 	@GetMapping("/getByIsActiveTrue")
-	public ResponseEntity<DataResult<List<JobAdvertisementForListDto>>> getByIsActiveTrue(){
-		final DataResult<List<JobAdvertisementForListDto>> result = jobAdvertisementService.getByIsActiveTrue();
+	public ResponseEntity<DataResult<List<JobAdvertisement>>> getByIsActiveTrue(){
+		final DataResult<List<JobAdvertisement>> result = jobAdvertisementService.getByIsActiveTrue();
 		if (!result.isSuccess())
-			return new ResponseEntity<DataResult<List<JobAdvertisementForListDto>>>(result, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<DataResult<List<JobAdvertisement>>>(result, HttpStatus.BAD_REQUEST);
 		
 		return ResponseEntity.ok(result) ;
 	}
 	
 	@GetMapping("/getByIsActiveTrueOrderByReleaseDateAsc")
-	public ResponseEntity<DataResult<List<JobAdvertisementForListDto>>> getByIsActiveTrueOrderByReleaseDateAsc(){
-		final DataResult<List<JobAdvertisementForListDto>> result = jobAdvertisementService.getByIsActiveTrueOrderByReleaseDateAsc();
+	public ResponseEntity<DataResult<List<JobAdvertisement>>> getByIsActiveTrueOrderByReleaseDateAsc(){
+		final DataResult<List<JobAdvertisement>> result = jobAdvertisementService.getByIsActiveTrueOrderByReleaseDateAsc();
 		if(!result.isSuccess())
-			return new ResponseEntity<DataResult<List<JobAdvertisementForListDto>>>(result,HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<DataResult<List<JobAdvertisement>>>(result,HttpStatus.BAD_REQUEST);
 		
 		return ResponseEntity.ok(result);
 	}
@@ -126,17 +129,6 @@ public class JobAdvertisementsController {
 		
 	}	
 	
-//	@ExceptionHandler(MethodArgumentNotValidException.class)
-//	@ResponseStatus(HttpStatus.BAD_REQUEST)
-//	public ErrorDataResult<Object> handleValidationException(MethodArgumentNotValidException exceptions){
-//		Map<String,String> validationErrors = new HashMap<String, String>();
-//		for (FieldError fieldError : exceptions.getBindingResult().getFieldErrors()) {
-//			validationErrors.put(fieldError.getField(), fieldError.getDefaultMessage());
-//		}
-//		
-//		ErrorDataResult<Object> errors = new ErrorDataResult<Object>(validationErrors, "Doğrulama hataları");
-//		return errors;
-//	}
 	
 	
 	
