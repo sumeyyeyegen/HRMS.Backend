@@ -33,6 +33,7 @@ public class Employer extends User {
 	@NotNull
 	@Column(name="id")
 	@PrimaryKeyJoinColumn(name="id",referencedColumnName = "id")
+	@JsonIgnore
 	private int id;
 	
 	@NotNull
