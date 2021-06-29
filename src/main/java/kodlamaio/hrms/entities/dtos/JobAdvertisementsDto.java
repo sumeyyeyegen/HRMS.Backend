@@ -40,4 +40,6 @@ public class JobAdvertisementsDto {
 	private int maxSalary;
 	private int employerId;
 	private int cityId;
+	private int workPlaceId;
+	private int workTimeId;
 }
