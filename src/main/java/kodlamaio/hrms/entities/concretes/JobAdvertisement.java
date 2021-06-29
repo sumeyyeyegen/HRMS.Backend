@@ -78,4 +78,13 @@ public class JobAdvertisement {
 	@JoinColumn(name = "job_id")
 	private Job job;
 	
+	@NotNull
+	@ManyToOne
+	@JoinColumn(name = "work_place_id")
+	private WorkPlace workPlace;
+	
+	@NotNull
+	@ManyToOne
+	@JoinColumn(name = "work_time_id")
+	private WorkTime workTime;
 }
