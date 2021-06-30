@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import kodlamaio.hrms.business.abstracts.WorkTimeService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
+import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.dataAccess.abstracts.WorkTimeDao;
 import kodlamaio.hrms.entities.concretes.WorkTime;
 
@@ -36,8 +37,8 @@ public class WorkTimeManager implements WorkTimeService {
 
 	@Override
 	public DataResult<List<WorkTime>> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		List<WorkTime> results = workTimeDao.findAll();
+		return new SuccessDataResult<List<WorkTime>>(results, "Veriler başarılı bir şekilde getirildi.");
 	}
 
 	@Override

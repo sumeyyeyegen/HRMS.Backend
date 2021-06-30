@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import kodlamaio.hrms.business.abstracts.WorkPlaceService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
+import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.dataAccess.abstracts.WorkPlaceDao;
 import kodlamaio.hrms.entities.concretes.WorkPlace;
 
@@ -35,8 +36,8 @@ public class WorkPlaceManager implements WorkPlaceService {
 
 	@Override
 	public DataResult<List<WorkPlace>> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		List<WorkPlace> result = workPlaceDao.findAll();
+		return new SuccessDataResult<List<WorkPlace>>(result, "Veriler başarılı bir şekilde getirildi.");
 	}
 
 	@Override
