@@ -1,5 +1,7 @@
 package kodlamaio.hrms.entities.concretes;
 import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,11 +25,9 @@ import lombok.NoArgsConstructor;
 @Table(name="web_sites")
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","Website"})
 
 public class Website {
 	
-	@NotNull
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,8 +38,7 @@ public class Website {
 	@Column(name="name")
 	private String name;
 	
-	@NotNull
 	@JsonIgnore()
-	@OneToMany(mappedBy = "website")
+	@OneToMany(mappedBy = "website",cascade = CascadeType.MERGE)
 	private List<CandidateCvWebsite> websites;
 }

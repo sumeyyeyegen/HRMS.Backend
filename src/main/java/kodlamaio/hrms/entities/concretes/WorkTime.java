@@ -2,6 +2,7 @@ package kodlamaio.hrms.entities.concretes;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,9 +16,11 @@ import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Data
 @Entity
@@ -28,9 +31,8 @@ import lombok.NoArgsConstructor;
 public class WorkTime {
 
 	@Id
-	@NotNull
 	@Column(name="id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY )
 	private int id;
 	
 	@NotNull
@@ -38,8 +40,7 @@ public class WorkTime {
 	@Column(name="name")
 	private String name;
 	
-	@NotNull
 	@JsonIgnore()
-	@OneToMany(mappedBy="workTime")
+	@OneToMany(mappedBy="workTime",cascade = CascadeType.MERGE)
 	private List<JobAdvertisement> jobAdvertisements;
 }

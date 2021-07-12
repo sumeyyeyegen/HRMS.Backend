@@ -46,7 +46,6 @@ public class Employee extends User {
 	@Column(name="last_name")
 	private String lastName;
 	
-	@NotNull
 	@JsonIgnore()
 	@OneToMany(mappedBy = "employee")
 	private List<EmployeeConfirm> employeeConfirms ;

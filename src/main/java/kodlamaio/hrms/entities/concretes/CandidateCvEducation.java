@@ -6,6 +6,7 @@ import java.time.ZoneId;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -63,7 +64,7 @@ public class CandidateCvEducation {
 	private final LocalDateTime createAt = LocalDateTime.now(ZoneId.of("Asia/Istanbul"));
 	
 	@NotNull
-	@ManyToOne
+	@ManyToOne(targetEntity = CandidateCv.class, fetch = FetchType.LAZY, optional = false)
 	@JsonIgnore
 	@JoinColumn(name="candidate_cv_id")
 	private CandidateCv candidateCv;

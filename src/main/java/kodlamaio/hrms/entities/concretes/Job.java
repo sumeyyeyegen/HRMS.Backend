@@ -2,6 +2,7 @@ package kodlamaio.hrms.entities.concretes;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,20 +19,21 @@ import org.hibernate.validator.constraints.Length;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Data
 @Entity
 @Table(name="jobs")
 @NoArgsConstructor
-@AllArgsConstructor
 
 public class Job {
 	
 	@Id
-	@NotNull
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
 	private int id;
@@ -41,13 +43,12 @@ public class Job {
 	@Column(name="title")
 	private String title;
 	
-	@NotNull
 	@JsonIgnore()
-	@OneToMany(mappedBy="job")
+	@OneToMany(mappedBy="job",cascade = CascadeType.MERGE)
 	private List<JobAdvertisement> jobAdvertisements;
 	
-	@NotNull
 	@JsonIgnore()
-	@OneToMany(mappedBy = "job")
+	@OneToMany(mappedBy = "job", cascade = CascadeType.MERGE)
 	private List<CandidateCvExperience> experiences;
+
 }

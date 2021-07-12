@@ -15,6 +15,8 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.UniqueElements;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -30,28 +32,17 @@ import lombok.ToString;
 @Table(name="users")
 
 public class User {
-	@NotNull
 	@Column(name="id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonIgnore
 	@Id
-	private int id;
+	private int id; 
 	
-	@NotNull
 	@UniqueElements
 	@Column(name="email")
 	private String email;
-	
-	@NotNull
+	 
 	@Column(name="password")
 	private String password;
-	
-	@Builder
-	public User(final int id, 
-			@NotBlank @Email @Size(max = 320) final String email,
-			@NotBlank @Size(max = 25) final String password) {
-		this.id = id;
-		this.email = email;
-		this.password = password;
-	}
 	
 }

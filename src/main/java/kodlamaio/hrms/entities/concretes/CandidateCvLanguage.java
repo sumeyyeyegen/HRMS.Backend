@@ -3,6 +3,7 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -47,7 +48,7 @@ public class CandidateCvLanguage {
 
 	@NotNull
 	@JsonIgnore()
-	@ManyToOne
+	@ManyToOne(targetEntity = CandidateCv.class, fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name="candidate_cv_id")
 	private CandidateCv candidateCv;
 }

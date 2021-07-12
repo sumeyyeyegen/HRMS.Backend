@@ -15,10 +15,12 @@ import org.hibernate.validator.constraints.Length;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import kodlamaio.hrms.core.entities.User;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Data
 @Entity
@@ -33,20 +35,17 @@ public class Employer extends User {
 	@NotNull
 	@Column(name="id")
 	@PrimaryKeyJoinColumn(name="id",referencedColumnName = "id")
-	@JsonIgnore
+	@Setter(value = AccessLevel.NONE)
 	private int id;
 	
-	@NotNull
 	@Length(max = 255)
 	@Column(name="company_name")
 	private String companyName;
 	
-	@NotNull
 	@Length(max = 50)
 	@Column(name="web_site")
 	private String webSite;
 	
-	@NotNull
 	@Length(max = 12)
 	@Column(name="phone_number")
 	private String phoneNumber;
@@ -55,7 +54,7 @@ public class Employer extends User {
 	@JsonIgnore()
 	@OneToMany(mappedBy = "employer")
 	private List<JobAdvertisement> jobAdvertisements;
-	
+	 
 	@NotNull
 	@JsonIgnore()
 	@OneToOne(mappedBy = "employer")

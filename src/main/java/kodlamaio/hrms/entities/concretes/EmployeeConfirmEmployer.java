@@ -29,12 +29,10 @@ import lombok.NoArgsConstructor;
 public class EmployeeConfirmEmployer extends EmployeeConfirm {
 	
 	@Id
-	@NotNull
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
 	private int id;
 	
-	@NotNull
 	@JsonIgnore()
 	@OneToOne
 	@JoinColumn(name="employer_id")

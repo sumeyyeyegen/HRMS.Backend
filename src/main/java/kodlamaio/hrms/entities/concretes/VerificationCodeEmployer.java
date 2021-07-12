@@ -23,13 +23,11 @@ import lombok.NoArgsConstructor;
 @Table(name="verification_code_employers")
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","VerificationCodeEmployer"})
 @EqualsAndHashCode(callSuper=false)
 
 public class VerificationCodeEmployer extends VerificationCode {
 	
 	@Id
-	@NotNull
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
 	private int id;

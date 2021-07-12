@@ -31,7 +31,6 @@ import lombok.NoArgsConstructor;
 public class EmployeeConfirm {
 	
 	@Id
-	@NotNull
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
 	private int id;
@@ -43,7 +42,6 @@ public class EmployeeConfirm {
 	@Column(name="confirm_date")
 	private LocalDateTime confirmDate;	
 	
-	@NotNull
 	@ManyToOne
 	@JoinColumn(name="employee_id")
 	private Employee employee;

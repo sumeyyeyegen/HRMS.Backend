@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,7 +28,6 @@ import lombok.NoArgsConstructor;
 @Table(name="candidate_cv_experiences")
 @NoArgsConstructor
 @AllArgsConstructor
-//@JsonIgnoreProperties({"hibernateLazyInitializer","handler","CandidateCv"})
 
 public class CandidateCvExperience {
 	
@@ -54,13 +54,13 @@ public class CandidateCvExperience {
 	private final LocalDateTime createAt = LocalDateTime.now();
 	
 	@NotNull
-	@ManyToOne
+	@ManyToOne(targetEntity = CandidateCv.class, fetch = FetchType.LAZY, optional = false)
 	@JsonIgnore
 	@JoinColumn(name="candidate_cv_id")
 	private CandidateCv candidateCv;
 	
 	@NotNull
-	@ManyToOne
+	@ManyToOne(targetEntity = Job.class, fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name="job_id")
 	private Job job;
 }

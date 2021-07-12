@@ -1,6 +1,8 @@
 package kodlamaio.hrms.entities.concretes;
 
 import java.time.LocalDateTime;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,11 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.Cascade;
 import org.hibernate.validator.constraints.Length;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,12 +24,11 @@ import lombok.NoArgsConstructor;
 @Table(name="job_advertisements")
 @AllArgsConstructor
 @NoArgsConstructor
-
+ 
 public class JobAdvertisement {
 	
 	@Id
-	@NotNull
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY) 
 	@Column(name="id")
 	private int id;
 	
@@ -63,28 +61,24 @@ public class JobAdvertisement {
 	@Column(name="max_salary")
 	private int maxSalary;
 	
-	@NotNull
-	@ManyToOne
+	@ManyToOne(targetEntity = Employer.class, optional = false, cascade = CascadeType.ALL)
 	@JoinColumn(name="employer_id")
 	private Employer employer;
 	
-	@NotNull
-	@ManyToOne
+	@ManyToOne (targetEntity = City.class, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "city_id")
 	private City city;
 	
-	@NotNull
-	@ManyToOne
+	@ManyToOne(targetEntity = Job.class ,cascade = CascadeType.MERGE)
 	@JoinColumn(name = "job_id")
-	private Job job;
+	private Job job; 
 	
-	@NotNull
-	@ManyToOne
+	@ManyToOne(targetEntity = WorkPlace.class,cascade = CascadeType.MERGE)
 	@JoinColumn(name = "work_place_id")
 	private WorkPlace workPlace;
 	
-	@NotNull
-	@ManyToOne
+
+	@ManyToOne(targetEntity = WorkTime.class,cascade = CascadeType.MERGE)
 	@JoinColumn(name = "work_time_id")
 	private WorkTime workTime;
 }
