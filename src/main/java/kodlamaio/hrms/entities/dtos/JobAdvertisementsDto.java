@@ -23,22 +23,22 @@ import lombok.ToString;
 
 @Data
 @NoArgsConstructor
-@ToString
-@EqualsAndHashCode
 @AllArgsConstructor
 
 public class JobAdvertisementsDto {
-	@JsonIgnore
+	@JsonIgnore()
 	private int id;
 	private int jobId;
 	private String jobDescription;
 	private int openPositions;
-	private boolean isActive;
+	@JsonIgnore
+	private boolean isActive=true;
 	private LocalDateTime applicationDeadline;
 	private LocalDateTime releaseDate;
 	private int minSalary;
 	private int maxSalary;
-	private int employerId;
+	@JsonIgnore 
+	private int employerId=17;
 	private int cityId;
 	private int workPlaceId;
 	private int workTimeId;
