@@ -32,7 +32,7 @@ public class JobAdvertisementsController {
 	}	
 	
 	@PostMapping("/add")
-	public ResponseEntity<Result> add(@Valid @RequestBody final JobAdvertisementsDto jobAdvertisementsDto) {
+	public ResponseEntity<Result> add(@RequestBody JobAdvertisementsDto jobAdvertisementsDto) {
 		final Result result = jobAdvertisementService.addJobAdvertisements(jobAdvertisementsDto);
 
 		if (!result.isSuccess())
@@ -42,7 +42,7 @@ public class JobAdvertisementsController {
 	}
 	
 	@PostMapping("/update")
-	public ResponseEntity<Result> update(@Valid @RequestBody final JobAdvertisement jobAdvertisement) {
+	public ResponseEntity<Result> update(@RequestBody final JobAdvertisement jobAdvertisement) {
 		final Result result = jobAdvertisementService.update(jobAdvertisement);
 
 		if (!result.isSuccess())
