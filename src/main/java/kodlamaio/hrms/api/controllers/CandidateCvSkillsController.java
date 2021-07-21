@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import kodlamaio.hrms.business.abstracts.CandidateCvSkillService;
@@ -31,7 +32,7 @@ public class CandidateCvSkillsController {
 	}
 	
 	@GetMapping("/getbycandidatecvid")
-	public ResponseEntity<DataResult<List<CandidateCvSkill>>> getByCandidateCvId(int candidateCvId){
+	public ResponseEntity<DataResult<List<CandidateCvSkill>>> getByCandidateCvId(@RequestParam int candidateCvId){
 		final DataResult<List<CandidateCvSkill>> result = candidateCvSkillService.getByCandidateCvId(candidateCvId);
 		 
 		return ResponseEntity.ok(result);
