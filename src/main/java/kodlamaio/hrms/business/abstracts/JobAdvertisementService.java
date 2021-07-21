@@ -11,6 +11,7 @@ import kodlamaio.hrms.entities.dtos.JobAdvertisementsDto;
 
 public interface JobAdvertisementService extends BaseService<JobAdvertisement,Integer> {
 	Result addJobAdvertisements(JobAdvertisementsDto jobAdvertisementsDto);
+	DataResult<JobAdvertisement> approveJobAdvert(int id);
 	Result disableById(int id);
 	DataResult<List<JobAdvertisement>> getByIsActiveTrue();
 	DataResult<List<JobAdvertisementForListDto>> getByIsActiveTrueOrderByReleaseDateDesc();
@@ -18,4 +19,5 @@ public interface JobAdvertisementService extends BaseService<JobAdvertisement,In
 	DataResult<List<JobAdvertisementForListDto>> getByIsActiveTrueOrderByApplicationDeadlineDesc();
 	DataResult<List<JobAdvertisementForListDto>> getByIsActiveTrueOrderByApplicationDeadlineAsc();
 	DataResult<List<JobAdvertisementForListDto>> getByIsActiveTrueAndEmployer_IdForList(int id);
+	
 }
