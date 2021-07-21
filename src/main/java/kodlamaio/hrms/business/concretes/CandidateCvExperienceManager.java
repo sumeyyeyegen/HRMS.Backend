@@ -14,7 +14,7 @@ import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.CandidateCvExperienceDao;
 import kodlamaio.hrms.entities.concretes.CandidateCvExperience;
-import kodlamaio.hrms.entities.dtos.CvExperiencesForAddDto;
+import kodlamaio.hrms.entities.dtos.CvExperienceForAddDto;
 
 @Service
 public class CandidateCvExperienceManager implements CandidateCvExperienceService{
@@ -36,7 +36,7 @@ public class CandidateCvExperienceManager implements CandidateCvExperienceServic
 	}
 	
 	@Override
-	public Result addExperiences(CvExperiencesForAddDto cvExperiencesForAddDto) {
+	public Result addExperiences(CvExperienceForAddDto cvExperiencesForAddDto) {
 		candidateCvExperienceDao.save((CandidateCvExperience) dtoConverterService.dtoClassConverter(cvExperiencesForAddDto, CandidateCvExperience.class));
 		return new SuccessResult("İş Deneyimi Eklendi");
 	}
