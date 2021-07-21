@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import kodlamaio.hrms.business.abstracts.JobAdvertisementService;
 import kodlamaio.hrms.core.utilities.dtoConverter.DtoConverterService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
+import kodlamaio.hrms.core.utilities.results.ErrorDataResult;
+import kodlamaio.hrms.core.utilities.results.ErrorResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
@@ -106,5 +108,19 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 		jobAdvertisementToUpdate=jobAdvertisement;
 		jobAdvertisementDao.save(jobAdvertisementToUpdate);
 		return new SuccessResult("İş ilanı güncellendi.");
+	}
+
+	@Override
+	public DataResult<JobAdvertisement> approveJobAdvert(int id) {
+		JobAdvertisement result = jobAdvertisementDao.getById(id);
+		if(result == null) return new ErrorDataResult<JobAdvertisement>("Böyle bir iş ilanı bulunamadı");
+		if(result.isApproved()==true) {
+			return new ErrorDataResult<JobAdvertisement>("İş ilanı zaten onaylanmış");
+		}
+		result.setApproved(true);
+		jobAdvertisementDao.save(result);
+		
+		return new SuccessDataResult<JobAdvertisement>(result,"İş ilanı onaylandı");
+		
 	}
 }
