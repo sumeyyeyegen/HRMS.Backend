@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import kodlamaio.hrms.business.abstracts.CityService;
@@ -40,7 +41,7 @@ public class CitiesController {
 	}
 	
 	@GetMapping("/getbyid")
-	public ResponseEntity<DataResult<City>> getById(Integer id){
+	public ResponseEntity<DataResult<City>> getById(@RequestParam Integer id){
 		DataResult<City> result = cityService.getById(id) ;
 
 		if (!result.isSuccess())
