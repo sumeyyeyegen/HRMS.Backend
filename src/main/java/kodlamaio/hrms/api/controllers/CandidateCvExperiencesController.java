@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import kodlamaio.hrms.business.abstracts.CandidateCvExperienceService;
@@ -16,7 +17,7 @@ import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.CandidateCvEducation;
 import kodlamaio.hrms.entities.concretes.CandidateCvExperience;
-import kodlamaio.hrms.entities.dtos.CvExperiencesForAddDto;
+import kodlamaio.hrms.entities.dtos.CvExperienceForAddDto;
 
 @CrossOrigin()
 @RestController
@@ -33,7 +34,7 @@ public class CandidateCvExperiencesController {
 	}
 	
 	@PostMapping("/add")
-	public ResponseEntity<Result> add(@RequestBody CvExperiencesForAddDto cvExperiencesForAddDto) {
+	public ResponseEntity<Result> add(@RequestBody CvExperienceForAddDto cvExperiencesForAddDto) {
 		final Result result = candidateCvExperienceService.addExperiences(cvExperiencesForAddDto);
 
 		return ResponseEntity.ok(result);
@@ -47,14 +48,14 @@ public class CandidateCvExperiencesController {
 	}
 	
 	@GetMapping("/getall/byeducationsiddesc")
-	public ResponseEntity<DataResult<List<CandidateCvExperience>>> getByCandidateCvIdOrderByQuitDateDesc(int id) {
+	public ResponseEntity<DataResult<List<CandidateCvExperience>>> getByCandidateCvIdOrderByQuitDateDesc(@RequestParam int id) {
 		final DataResult<List<CandidateCvExperience>> result = candidateCvExperienceService.getByCandidateCvIdOrderByQuitDateDesc(id);
 
 		return ResponseEntity.ok(result);
 	}
 	
 	@GetMapping("/getall/byeducationsidasc")
-	public ResponseEntity<DataResult<List<CandidateCvExperience>>> getByCandidateCvIdOrderByQuitDateAsc(int id) {
+	public ResponseEntity<DataResult<List<CandidateCvExperience>>> getByCandidateCvIdOrderByQuitDateAsc(@RequestParam int id) {
 		final DataResult<List<CandidateCvExperience>> result = candidateCvExperienceService.getByCandidateCvIdOrderByQuitDateAsc(id);
 
 		return ResponseEntity.ok(result);
