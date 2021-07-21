@@ -7,22 +7,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.CandidateCvEducationService;
+import kodlamaio.hrms.core.utilities.dtoConverter.DtoConverterService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.CandidateCvEducationDao;
 import kodlamaio.hrms.entities.concretes.CandidateCvEducation;
+import kodlamaio.hrms.entities.dtos.CvEducationForAddDto;
 import kodlamaio.hrms.entities.dtos.JobAdvertisementForListDto;
 
 @Service
 public class CandidateCvEducationManager implements CandidateCvEducationService {
 	
 	private CandidateCvEducationDao candidateCvEducationDao;
+	private DtoConverterService dtoConverter;
 	
 	@Autowired
-	public CandidateCvEducationManager(CandidateCvEducationDao candidateCvEducationDao) {
+	public CandidateCvEducationManager(CandidateCvEducationDao candidateCvEducationDao,DtoConverterService dtoConverter) {
 		this.candidateCvEducationDao=candidateCvEducationDao;
+		this.dtoConverter = dtoConverter;
 	}
 
 	@Override
@@ -71,6 +75,13 @@ public class CandidateCvEducationManager implements CandidateCvEducationService 
 	@Override
 	public DataResult<List<CandidateCvEducation>> getAllByCandidateCvIdOrderByGraduationDateAsc(int candidateCvId) {
 		return new SuccessDataResult<List<CandidateCvEducation>>(candidateCvEducationDao.getAllByCandidateCvIdOrderByGraduationDateAsc(candidateCvId),"Data listelendi.");
+	}
+
+	@Override
+	public Result addEducation(CvEducationForAddDto eduDto) {
+		candidateCvEducationDao.save((CandidateCvEducation) dtoConverter.dtoClassConverter(eduDto, CandidateCvEducation.class));
+		
+		return new SuccessResult("Başarılı bir şekilde eklendi.");
 	}
 
 }
