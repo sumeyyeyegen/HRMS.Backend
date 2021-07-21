@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -52,7 +53,7 @@ public class JobAdvertisementsController {
 	}
 	
 	@PostMapping("/update/disablebyid")
-	public ResponseEntity<Result> disableById(final int id) {
+	public ResponseEntity<Result> disableById(@RequestParam int id) {
 		final Result result = jobAdvertisementService.disableById(id);
 
 		if (!result.isSuccess())
@@ -129,6 +130,17 @@ public class JobAdvertisementsController {
 		
 	}	
 	
+	@PutMapping("/approvebyid")
+	public ResponseEntity<DataResult<JobAdvertisement>> approveJobAdvert(int id){
+		
+		final DataResult<JobAdvertisement> result = jobAdvertisementService.approveJobAdvert(id);
+		
+		if(!result.isSuccess())
+			return new ResponseEntity<DataResult<JobAdvertisement>>(result, HttpStatus.BAD_REQUEST);
+		
+		return ResponseEntity.ok(result);
+		
+	}	
 	
 	
 	
