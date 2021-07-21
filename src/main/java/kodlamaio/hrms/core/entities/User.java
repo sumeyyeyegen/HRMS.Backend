@@ -34,7 +34,6 @@ import lombok.ToString;
 public class User {
 	@Column(name="id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@JsonIgnore
 	@Id
 	private int id; 
 	

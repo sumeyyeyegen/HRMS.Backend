@@ -61,11 +61,10 @@ public class CandidateCvEducation {
 	
 	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
 	@Column(name = "created_at")
-	private final LocalDateTime createAt = LocalDateTime.now(ZoneId.of("Asia/Istanbul"));
+	private final LocalDateTime createdAt = LocalDateTime.now(ZoneId.of("Asia/Istanbul"));
 	
-	@NotNull
-	@ManyToOne(targetEntity = CandidateCv.class, fetch = FetchType.LAZY, optional = false)
 	@JsonIgnore
+	@ManyToOne(targetEntity = CandidateCv.class, fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name="candidate_cv_id")
 	private CandidateCv candidateCv;
 }

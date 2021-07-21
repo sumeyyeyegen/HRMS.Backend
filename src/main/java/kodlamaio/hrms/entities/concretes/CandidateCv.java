@@ -29,12 +29,9 @@ import lombok.ToString;
 @Data
 @Entity
 @Table(name="candidate_cvs")
-@Builder
 @ToString
-@EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","CandidateCv"})
 
 public class CandidateCv {
 	
@@ -50,15 +47,15 @@ public class CandidateCv {
 	private String coverLetter;
 	
 	@NotNull
-	@Column(name = "created_at", columnDefinition = "Date default CURRENT_DATE")
-	private final LocalDateTime createdAt = LocalDateTime.now();
-	
+	@Column(name="created_at")
+	private LocalDateTime createdAt = LocalDateTime.now();
+	 
 	@OneToMany(mappedBy = "candidateCv")
 	private List<CandidateCvEducation> educations;
 	
 	@OneToMany(mappedBy = "candidateCv")
 	private List<CandidateCvExperience> experiences;
-	
+
 	@OneToMany(mappedBy = "candidateCv")
 	private List<CandidateCvLanguage> languages;
 	

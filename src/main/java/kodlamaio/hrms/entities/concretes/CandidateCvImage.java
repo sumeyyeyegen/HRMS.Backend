@@ -43,9 +43,8 @@ public class CandidateCvImage {
 	
 	@NotNull
 	@Column(name = "created_at", columnDefinition = "Date default CURRENT_DATE")
-	private final LocalDateTime createAt = LocalDateTime.now();
+	private LocalDateTime createAt = LocalDateTime.now();
 
-	@NotNull
 	@JsonIgnore()
 	@ManyToOne
 	@JoinColumn(name="candidate_cv_id")

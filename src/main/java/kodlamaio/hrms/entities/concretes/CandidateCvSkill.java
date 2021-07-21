@@ -45,7 +45,6 @@ public class CandidateCvSkill {
 	@Column(name = "created_at", columnDefinition = "Date default CURRENT_DATE")
 	private final LocalDateTime createAt = LocalDateTime.now();
 
-	@NotNull
 	@JsonIgnore()
 	@ManyToOne(targetEntity = CandidateCv.class, fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name="candidate_cv_id")

@@ -53,14 +53,13 @@ public class CandidateCvExperience {
 	@Column(name = "created_at", columnDefinition = "Date default CURRENT_DATE")
 	private final LocalDateTime createAt = LocalDateTime.now();
 	
-	@NotNull
-	@ManyToOne(targetEntity = CandidateCv.class, fetch = FetchType.LAZY, optional = false)
+	@ManyToOne(targetEntity = CandidateCv.class, optional = false)
 	@JsonIgnore
 	@JoinColumn(name="candidate_cv_id")
 	private CandidateCv candidateCv;
 	
 	@NotNull
-	@ManyToOne(targetEntity = Job.class, fetch = FetchType.LAZY, optional = false)
+	@ManyToOne(targetEntity = Job.class, optional = false)
 	@JoinColumn(name="job_id")
 	private Job job;
 }
