@@ -61,6 +61,10 @@ public class JobAdvertisement {
 	@Column(name="max_salary")
 	private int maxSalary;
 	
+	@NotNull
+	@Column(name="is_approved")
+	private boolean isApproved;
+	
 	@ManyToOne(targetEntity = Employer.class, optional = false, cascade = CascadeType.ALL)
 	@JoinColumn(name="employer_id")
 	private Employer employer;
