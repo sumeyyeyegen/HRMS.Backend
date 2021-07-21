@@ -1,9 +1,12 @@
 package kodlamaio.hrms.api.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,11 +15,14 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import kodlamaio.hrms.business.abstracts.CandidateCvImageService;
+import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.entities.concretes.CandidateCv;
+import kodlamaio.hrms.entities.concretes.CandidateCvExperience;
 import kodlamaio.hrms.entities.concretes.CandidateCvImage;
-import kodlamaio.hrms.entities.dtos.CvExperiencesForAddDto;
+import kodlamaio.hrms.entities.dtos.CvExperienceForAddDto;
+import kodlamaio.hrms.entities.dtos.CvImageForAddDto;
 
 @CrossOrigin()
 @RestController
@@ -32,9 +38,16 @@ public class CandidateCvImagesController {
 		this.candidateCvImageService = candidateCvImageService;
 	}
 	
+	@GetMapping("/getall")
+	public ResponseEntity<DataResult<List<CandidateCvImage>>> getAll() {
+		DataResult<List<CandidateCvImage>> result = candidateCvImageService.getAll();
+
+		return ResponseEntity.ok(result);
+	}
+	
 	@PostMapping("/add")
-	public ResponseEntity<?> add(@RequestBody CandidateCvImage candidateCvImage) {
-		final Result result = candidateCvImageService.add(candidateCvImage);
+	public ResponseEntity<?> add(@RequestBody CvImageForAddDto cvImageForAddDto) {
+		final Result result = candidateCvImageService.addImage(cvImageForAddDto);
 
 		return ResponseEntity.ok(result);
 	}
@@ -42,11 +55,12 @@ public class CandidateCvImagesController {
 	@PostMapping("/addwithmulti")
 	public ResponseEntity<Result> add(@RequestBody MultipartFile file,@RequestParam int candidateCvId) {
 		
-		CandidateCvImage candidateCvImage = new CandidateCvImage();
+//		CandidateCvImage candidateCvImage = new CandidateCvImage();
+		CvImageForAddDto imageDto = new CvImageForAddDto();
 		CandidateCv candidateCv = new CandidateCv();
 		candidateCv.setId(candidateCvId);
-		candidateCvImage.setCandidateCv(candidateCv);
-		final Result result = candidateCvImageService.add(candidateCvImage,file);
+		imageDto.setCandidateCvId(candidateCvId);
+		final Result result = candidateCvImageService.add(imageDto,file);
 
 		return ResponseEntity.ok(result);
 	}
