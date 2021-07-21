@@ -7,10 +7,10 @@ import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.CandidateCvEducation;
 import kodlamaio.hrms.entities.concretes.CandidateCvExperience;
-import kodlamaio.hrms.entities.dtos.CvExperiencesForAddDto;
+import kodlamaio.hrms.entities.dtos.CvExperienceForAddDto;
 
 public interface CandidateCvExperienceService extends BaseService<CandidateCvExperience, Integer> {
-	Result addExperiences(CvExperiencesForAddDto cvExperiencesForAddDto);
+	Result addExperiences(CvExperienceForAddDto cvExperiencesForAddDto);
 	DataResult<List<CandidateCvExperience>> getByCandidateCvIdOrderByQuitDateDesc(int candidateCvId);
 	DataResult<List<CandidateCvExperience>> getByCandidateCvIdOrderByQuitDateAsc(int candidateCvId);
 }
