@@ -66,8 +66,8 @@ public class CandidateCvImagesController {
 	}
 	
 	@DeleteMapping("/delete")
-	public Result delete(@RequestParam CandidateCvImage candidateCvImage) {
-		candidateCvImageService.delete(candidateCvImage);
+	public Result delete(int id) {
+		candidateCvImageService.delete(id);
 		return new SuccessResult("Fotoğraf başarılı bir şekilde silindi.");
 	}
 	

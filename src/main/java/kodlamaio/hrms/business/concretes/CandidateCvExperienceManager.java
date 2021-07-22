@@ -13,8 +13,9 @@ import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.CandidateCvExperienceDao;
+import kodlamaio.hrms.entities.concretes.CandidateCvEducation;
 import kodlamaio.hrms.entities.concretes.CandidateCvExperience;
-import kodlamaio.hrms.entities.dtos.CvExperienceForAddDto;
+import kodlamaio.hrms.entities.dtos.CvExperienceForAddAndUpdateDto;
 
 @Service
 public class CandidateCvExperienceManager implements CandidateCvExperienceService{
@@ -36,14 +37,16 @@ public class CandidateCvExperienceManager implements CandidateCvExperienceServic
 	}
 	
 	@Override
-	public Result addExperiences(CvExperienceForAddDto cvExperiencesForAddDto) {
+	public Result addExperiences(CvExperienceForAddAndUpdateDto cvExperiencesForAddDto) {
 		candidateCvExperienceDao.save((CandidateCvExperience) dtoConverterService.dtoClassConverter(cvExperiencesForAddDto, CandidateCvExperience.class));
 		return new SuccessResult("İş Deneyimi Eklendi");
 	}
 	@Override
-	public Result delete(CandidateCvExperience candidateCvExperience) {
-		// TODO Auto-generated method stub
-		return null;
+	public Result delete(int cvExperienceId) {
+		CandidateCvExperience cvExp = candidateCvExperienceDao.getOne(cvExperienceId);
+		candidateCvExperienceDao.delete(cvExp);
+		
+		return new SuccessResult("Veri başarılı bir şekilde silindi");
 	}
 
 	@Override
@@ -71,6 +74,19 @@ public class CandidateCvExperienceManager implements CandidateCvExperienceServic
 	@Override
 	public DataResult<List<CandidateCvExperience>> getByCandidateCvIdOrderByQuitDateAsc(int candidateCvId) {
 		return new SuccessDataResult<List<CandidateCvExperience>>(candidateCvExperienceDao.getByCandidateCvIdOrderByQuitDateAsc(candidateCvId), "Veriler başarılı bir şekilde getirildi.");
+	}
+
+	@Override
+	public Result updateExperience(CvExperienceForAddAndUpdateDto experienceDto) {
+		CandidateCvExperience resCvExperience = candidateCvExperienceDao.getOne(experienceDto.getId());
+		
+//		resCvExperience.setGraduationDate(cvEduDto.getGraduationDate());
+//		resCvExperience.setStartDate(cvEduDto.getStartDate());
+//		resCvExperience.setSchoolName(cvEduDto.getSchoolName());
+//		
+//		candidateCvEducationDao.save(resCvEducation);
+		
+		return new SuccessResult("Güncelleme işlemi başarılı bir şekilde gerçekleştirildi");
 	}
 
 }

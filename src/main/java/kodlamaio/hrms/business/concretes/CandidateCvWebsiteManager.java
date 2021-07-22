@@ -14,7 +14,7 @@ import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.CandidateCvWebsiteDao;
 import kodlamaio.hrms.entities.concretes.CandidateCvLanguage;
 import kodlamaio.hrms.entities.concretes.CandidateCvWebsite;
-import kodlamaio.hrms.entities.dtos.CvWebSitesForAddDto;
+import kodlamaio.hrms.entities.dtos.CvWebSitesForAddAndUpdateDto;
 
 @Service
 public class CandidateCvWebsiteManager implements CandidateCvWebsiteService {
@@ -30,13 +30,14 @@ public class CandidateCvWebsiteManager implements CandidateCvWebsiteService {
 	}
 
 	@Override
-	public Result addWebSites(CvWebSitesForAddDto cvWebSitesForAddDto) {
+	public Result addWebSites(CvWebSitesForAddAndUpdateDto cvWebSitesForAddDto) {
 		candidateCvWebsiteDao.save((CandidateCvWebsite) dtoConverterService.dtoClassConverter(cvWebSitesForAddDto, CandidateCvWebsite.class));
 		return new SuccessResult("Ekleme işlemi başarıyla gerçekleştirildi.");
 	}
 
 	@Override
-	public Result delete(CandidateCvWebsite candidateCvWebsite) {
+	public Result delete(int webSiteId) {
+		CandidateCvWebsite candidateCvWebsite = candidateCvWebsiteDao.getOne(webSiteId);
 		candidateCvWebsiteDao.delete(candidateCvWebsite);
 		return new SuccessResult("Silme işlemi gerçekleştirildi");
 	}

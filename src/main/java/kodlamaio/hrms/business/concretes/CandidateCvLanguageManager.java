@@ -14,7 +14,7 @@ import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.CandidateCvLanguageDao;
 import kodlamaio.hrms.entities.concretes.CandidateCvExperience;
 import kodlamaio.hrms.entities.concretes.CandidateCvLanguage;
-import kodlamaio.hrms.entities.dtos.CvLanguagesForAddDto;
+import kodlamaio.hrms.entities.dtos.CvLanguagesForAddAndUpdateDto;
 
 @Service
 public class CandidateCvLanguageManager implements CandidateCvLanguageService {
@@ -30,15 +30,15 @@ public class CandidateCvLanguageManager implements CandidateCvLanguageService {
 	}
 
 	@Override
-	public Result addLanguages(CvLanguagesForAddDto cvLanguagesForAddDto) {
+	public Result addLanguages(CvLanguagesForAddAndUpdateDto cvLanguagesForAddDto) {
 		candidateCvLanguageDao.save((CandidateCvLanguage) dtoConverterService.dtoClassConverter(cvLanguagesForAddDto, CandidateCvLanguage.class));
 		return new SuccessResult("Ekleme işlemi başarıyla gerçekleştirildi");
 	}
 
 	@Override
-	public Result delete(CandidateCvLanguage candidateCvLanguage) {
-		candidateCvLanguageDao.delete(candidateCvLanguage);
-		candidateCvLanguageDao.save(candidateCvLanguage);
+	public Result delete(int id) {
+		CandidateCvLanguage cvLang = candidateCvLanguageDao.getOne(id);
+		candidateCvLanguageDao.delete(cvLang);
 		return new SuccessResult("Silme işlemi gerçekleştirildi");
 	}
 

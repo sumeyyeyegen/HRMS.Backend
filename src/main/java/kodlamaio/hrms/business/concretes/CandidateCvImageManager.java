@@ -16,7 +16,7 @@ import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.CandidateCvImageDao;
 import kodlamaio.hrms.entities.concretes.CandidateCvImage;
-import kodlamaio.hrms.entities.dtos.CvImageForAddDto;
+import kodlamaio.hrms.entities.dtos.CvImageForAddAndUpdateDto;
 
 @Service
 public class CandidateCvImageManager implements CandidateCvImageService{
@@ -34,13 +34,13 @@ public class CandidateCvImageManager implements CandidateCvImageService{
 	}
 
 	@Override
-	public Result addImage(CvImageForAddDto imageDto) {
+	public Result addImage(CvImageForAddAndUpdateDto imageDto) {
 		candidateCvImageDao.save((CandidateCvImage) dtoConverter.dtoClassConverter(imageDto, CandidateCvImage.class));
 		return new SuccessResult("Fotoğraf başarılı bir şekilde eklendi.") ;
 	}
 
 	@Override
-	public Result add(CvImageForAddDto imageDto, MultipartFile file) {
+	public Result add(CvImageForAddAndUpdateDto imageDto, MultipartFile file) {
 		Map<String, String> result = (Map<String, String>) imageService.save(file).getData();
 		String url =result.get("url");
 		imageDto.setImageUrl(url);
@@ -48,8 +48,9 @@ public class CandidateCvImageManager implements CandidateCvImageService{
 	}
 
 	@Override
-	public Result delete(CandidateCvImage image) {
-		candidateCvImageDao.delete(image);
+	public Result delete(int imageId) {
+		CandidateCvImage cvImage = candidateCvImageDao.getOne(imageId);
+		candidateCvImageDao.delete(cvImage);
 		return new SuccessResult("Fotoğraf başarılı bir şekilde silindi.");
 	}
 

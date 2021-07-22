@@ -16,7 +16,7 @@ import kodlamaio.hrms.business.abstracts.CandidateCvWebsiteService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.CandidateCvWebsite;
-import kodlamaio.hrms.entities.dtos.CvWebSitesForAddDto;
+import kodlamaio.hrms.entities.dtos.CvWebSitesForAddAndUpdateDto;
 
 @CrossOrigin()
 @RestController
@@ -31,15 +31,15 @@ public class CandidateCvWebsitesController {
 	}
 	
 	@PostMapping("/add")
-	public ResponseEntity<Result> add(@RequestBody CvWebSitesForAddDto cvWebSitesForAddDto) {
+	public ResponseEntity<Result> add(@RequestBody CvWebSitesForAddAndUpdateDto cvWebSitesForAddDto) {
 		final Result result = candidateCvWebsiteService.addWebSites(cvWebSitesForAddDto);
 
 		return ResponseEntity.ok(result);
 	}
 	
 	@DeleteMapping("/delete")
-	public ResponseEntity<Result> delete(@RequestBody CandidateCvWebsite candidateCvWebsite) {
-		final Result result = candidateCvWebsiteService.delete(candidateCvWebsite);
+	public ResponseEntity<Result> delete(int webSiteId) {
+		final Result result = candidateCvWebsiteService.delete(webSiteId);
 
 		return ResponseEntity.ok(result);
 	}

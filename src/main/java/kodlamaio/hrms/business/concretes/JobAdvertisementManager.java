@@ -85,7 +85,7 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 	}
 
 	@Override
-	public Result delete(JobAdvertisement entity) {
+	public Result delete(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

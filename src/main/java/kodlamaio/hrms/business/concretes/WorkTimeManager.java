@@ -30,7 +30,7 @@ public class WorkTimeManager implements WorkTimeService {
 	}
 
 	@Override
-	public Result delete(WorkTime workTime) {
+	public Result delete(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

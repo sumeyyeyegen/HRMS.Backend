@@ -40,7 +40,7 @@ public class EmployeeConfirmEmployerManager implements EmployeeConfirmEmployerSe
 	}
 
 	@Override
-	public Result delete(EmployeeConfirmEmployer employeeConfirmEmployer) {
+	public Result delete(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -79,8 +79,7 @@ public class CandidateManager implements CandidateService {
 	}
 
 	@Override
-	public Result delete(Candidate entity) {
-		// TODO Auto-generated method stub
+	public Result delete(int id) {
 		return null;
 	}
 

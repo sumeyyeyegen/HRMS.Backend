@@ -39,8 +39,9 @@ public class CandidateCvManager implements CandidateCvService{
 	}
 
 	@Override
-	public Result delete(CandidateCv candidateCv) {
-		candidateCvDao.delete(candidateCv);
+	public Result delete(int id) {
+		CandidateCv cv = candidateCvDao.getOne(id);
+		candidateCvDao.delete(cv);
 		return new SuccessResult("Cv silindi");
 	}
 

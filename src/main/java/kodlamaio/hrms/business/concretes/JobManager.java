@@ -35,7 +35,7 @@ public class JobManager implements JobService {
 	}
 
 	@Override
-	public Result delete(Job entity) {
+	public Result delete(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

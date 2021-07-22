@@ -58,7 +58,7 @@ public class EmployerManager implements EmployerService {
 	}
 
 	@Override
-	public Result delete(Employer entity) {
+	public Result delete(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

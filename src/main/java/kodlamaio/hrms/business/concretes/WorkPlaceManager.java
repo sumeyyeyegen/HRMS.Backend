@@ -29,7 +29,7 @@ public class WorkPlaceManager implements WorkPlaceService {
 	}
 
 	@Override
-	public Result delete(WorkPlace workPlace) {
+	public Result delete(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

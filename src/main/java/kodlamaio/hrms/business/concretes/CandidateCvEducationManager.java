@@ -37,8 +37,9 @@ public class CandidateCvEducationManager implements CandidateCvEducationService 
 	}
 
 	@Override
-	public Result delete(CandidateCvEducation candidateCvEducation) {
-		candidateCvEducationDao.delete(candidateCvEducation);
+	public Result delete(int cvEduId) {
+		CandidateCvEducation cv = candidateCvEducationDao.getOne(cvEduId);
+		candidateCvEducationDao.delete(cv);
 		
 		return new SuccessResult("Başarılı bir şekilde silindi.");
 	}
@@ -62,7 +63,6 @@ public class CandidateCvEducationManager implements CandidateCvEducationService 
 		resCvEducation.setGraduationDate(cvEduDto.getGraduationDate());
 		resCvEducation.setStartDate(cvEduDto.getStartDate());
 		resCvEducation.setSchoolName(cvEduDto.getSchoolName());
-		
 		candidateCvEducationDao.save(resCvEducation);
 		
 		return new SuccessResult("Güncelleme işlemi başarılı bir şekilde gerçekleştirildi");

@@ -53,8 +53,8 @@ public class CandidateCvEducationsController {
 	}
 	
 	@DeleteMapping("/delete")
-	public ResponseEntity<Result> delete(@RequestBody final CandidateCvEducation jobSeekerCVEducation) {
-		final Result result = candidateCvEducationService.delete(jobSeekerCVEducation);
+	public ResponseEntity<Result> delete(int cvEduId) {
+		Result result = candidateCvEducationService.delete(cvEduId);
 
 		return ResponseEntity.ok(result);
 	}

@@ -30,8 +30,9 @@ public class EmployeeManager implements EmployeeService {
 	}
 
 	@Override
-	public Result delete(Employee employee) {
-		employeeDao.delete(employee);
+	public Result delete(int id) {
+		Employee emp = employeeDao.getOne(id);
+		employeeDao.delete(emp);
 		return new SuccessResult("Personel silindi");
 	}
 

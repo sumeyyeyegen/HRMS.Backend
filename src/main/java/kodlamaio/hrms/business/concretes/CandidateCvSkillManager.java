@@ -14,7 +14,7 @@ import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.CandidateCvSkillDao;
 import kodlamaio.hrms.entities.concretes.CandidateCvLanguage;
 import kodlamaio.hrms.entities.concretes.CandidateCvSkill;
-import kodlamaio.hrms.entities.dtos.CvSkillForAddDto;
+import kodlamaio.hrms.entities.dtos.CvSkillForAddAndUpdateDto;
 
 @Service
 public class CandidateCvSkillManager implements CandidateCvSkillService {
@@ -36,9 +36,10 @@ public class CandidateCvSkillManager implements CandidateCvSkillService {
 	}
 
 	@Override
-	public Result delete(CandidateCvSkill entity) {
-		// TODO Auto-generated method stub
-		return null;
+	public Result delete(int id) {
+		CandidateCvSkill cvSkill = candidateCvSkillDao.getOne(id);
+		candidateCvSkillDao.delete(cvSkill);
+		return new SuccessResult("Silme işlemi gerçekleştirildi");
 	}
 
 	@Override
@@ -60,7 +61,7 @@ public class CandidateCvSkillManager implements CandidateCvSkillService {
 	}
 
 	@Override
-	public Result addSkills(CvSkillForAddDto cvSkillForAddDto) {
+	public Result addSkills(CvSkillForAddAndUpdateDto cvSkillForAddDto) {
 		candidateCvSkillDao.save((CandidateCvSkill) dtoConverterService.dtoClassConverter(cvSkillForAddDto, CandidateCvSkill.class));
 		return new SuccessResult("Ekleme işlemi başarıyla gerçekleştirildi");
 	}
