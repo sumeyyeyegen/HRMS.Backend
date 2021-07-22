@@ -6,11 +6,12 @@ import kodlamaio.hrms.core.business.BaseService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.CandidateCvEducation;
-import kodlamaio.hrms.entities.dtos.CvEducationForAddDto;
+import kodlamaio.hrms.entities.dtos.CvEducationForAddAndUpdateDto;
 
 public interface CandidateCvEducationService extends BaseService<CandidateCvEducation, Integer> {
 	DataResult<List<CandidateCvEducation>> getByCandidateCvEducations_Id(int id); 
 	DataResult<List<CandidateCvEducation>> getAllByCandidateCvIdOrderByGraduationDateDesc(int candidateCvId);
 	DataResult<List<CandidateCvEducation>> getAllByCandidateCvIdOrderByGraduationDateAsc(int candidateCvId);
-	Result addEducation(CvEducationForAddDto eduDto);
+	Result addEducation(CvEducationForAddAndUpdateDto eduDto);
+	Result updateEducation(CvEducationForAddAndUpdateDto eduDto);
 }

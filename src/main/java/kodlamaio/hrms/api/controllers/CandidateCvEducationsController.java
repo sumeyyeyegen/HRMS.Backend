@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,7 +21,7 @@ import kodlamaio.hrms.business.abstracts.CandidateCvEducationService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.CandidateCvEducation;
-import kodlamaio.hrms.entities.dtos.CvEducationForAddDto;
+import kodlamaio.hrms.entities.dtos.CvEducationForAddAndUpdateDto;
 
 @CrossOrigin()
 @RestController
@@ -36,8 +37,16 @@ public class CandidateCvEducationsController {
 	}
 	
 	@PostMapping("/add")
-	public ResponseEntity<Result> add(@RequestBody @Valid final CvEducationForAddDto eduDto){
+	public ResponseEntity<Result> add(@RequestBody @Valid final CvEducationForAddAndUpdateDto eduDto){
 		final Result result = candidateCvEducationService.addEducation(eduDto);
+		if(!result.isSuccess())
+			return new ResponseEntity<Result>(result, HttpStatus.BAD_REQUEST);
+		return ResponseEntity.ok(result);
+	}
+	
+	@PutMapping("/update")
+	public ResponseEntity<Result> update(@RequestBody CandidateCvEducation cvEdu){
+		final Result result = candidateCvEducationService.update(cvEdu);
 		if(!result.isSuccess())
 			return new ResponseEntity<Result>(result, HttpStatus.BAD_REQUEST);
 		return ResponseEntity.ok(result);

@@ -14,7 +14,7 @@ import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.CandidateCvEducationDao;
 import kodlamaio.hrms.entities.concretes.CandidateCvEducation;
-import kodlamaio.hrms.entities.dtos.CvEducationForAddDto;
+import kodlamaio.hrms.entities.dtos.CvEducationForAddAndUpdateDto;
 import kodlamaio.hrms.entities.dtos.JobAdvertisementForListDto;
 
 @Service
@@ -56,14 +56,21 @@ public class CandidateCvEducationManager implements CandidateCvEducationService 
 	}
 
 	@Override
-	public Result update(CandidateCvEducation candidateCvEducation) {
+	public Result updateEducation(CvEducationForAddAndUpdateDto cvEduDto) {
+		CandidateCvEducation resCvEducation = candidateCvEducationDao.getOne(cvEduDto.getId());
+		resCvEducation.setDepartmentName(cvEduDto.getDepartmentName());
+		resCvEducation.setGraduationDate(cvEduDto.getGraduationDate());
+		resCvEducation.setStartDate(cvEduDto.getStartDate());
+		resCvEducation.setSchoolName(cvEduDto.getSchoolName());
 		
-		return null;
+		candidateCvEducationDao.save(resCvEducation);
+		
+		return new SuccessResult("Güncelleme işlemi başarılı bir şekilde gerçekleştirildi");
 	}
 
 	@Override
 	public DataResult<CandidateCvEducation> getById(Integer id) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
@@ -78,10 +85,16 @@ public class CandidateCvEducationManager implements CandidateCvEducationService 
 	}
 
 	@Override
-	public Result addEducation(CvEducationForAddDto eduDto) {
+	public Result addEducation(CvEducationForAddAndUpdateDto eduDto) {
 		candidateCvEducationDao.save((CandidateCvEducation) dtoConverter.dtoClassConverter(eduDto, CandidateCvEducation.class));
 		
 		return new SuccessResult("Başarılı bir şekilde eklendi.");
+	}
+
+	@Override
+	public Result update(CandidateCvEducation entity) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
