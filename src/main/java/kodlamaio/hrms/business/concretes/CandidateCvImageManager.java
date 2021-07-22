@@ -66,7 +66,7 @@ public class CandidateCvImageManager implements CandidateCvImageService{
 	}
 
 	@Override
-	public Result update(CandidateCvImage entity) {
+	public Result update(CandidateCvImage cvImage) {
 		return null;
 	}
 
