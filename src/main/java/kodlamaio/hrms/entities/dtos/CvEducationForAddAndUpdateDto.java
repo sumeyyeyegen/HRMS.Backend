@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CvEducationForAddDto {
+public class CvEducationForAddAndUpdateDto {
 	private int id;
 	private String schoolName;
 	private String departmentName;
