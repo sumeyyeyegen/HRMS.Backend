@@ -16,8 +16,8 @@ import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.CandidateCvLanguage;
 import kodlamaio.hrms.entities.concretes.CandidateCvSkill;
-import kodlamaio.hrms.entities.dtos.CvLanguagesForAddDto;
-import kodlamaio.hrms.entities.dtos.CvSkillForAddDto;
+import kodlamaio.hrms.entities.dtos.CvLanguagesForAddAndUpdateDto;
+import kodlamaio.hrms.entities.dtos.CvSkillForAddAndUpdateDto;
 
 @CrossOrigin()
 @RestController
@@ -39,7 +39,7 @@ public class CandidateCvSkillsController {
 	}
 	
 	@PostMapping("/addskill")
-	public ResponseEntity<Result> addSkills(@RequestBody CvSkillForAddDto cvSkillForAddDto){
+	public ResponseEntity<Result> addSkills(@RequestBody CvSkillForAddAndUpdateDto cvSkillForAddDto){
 		final Result result = candidateCvSkillService.addSkills(cvSkillForAddDto);
 		
 		return ResponseEntity.ok(result);

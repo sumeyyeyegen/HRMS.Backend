@@ -16,7 +16,7 @@ import lombok.ToString;
 @EqualsAndHashCode
 @AllArgsConstructor
 
-public class CvWebSitesForAddDto {
+public class CvWebSitesForAddAndUpdateDto {
 	@JsonIgnore
 	private int id;
 	private String address;

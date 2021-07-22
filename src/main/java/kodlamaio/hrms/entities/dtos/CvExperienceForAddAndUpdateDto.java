@@ -19,7 +19,7 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode
 @AllArgsConstructor
-public class CvExperienceForAddDto {
+public class CvExperienceForAddAndUpdateDto {
 	@JsonIgnore
 	private int id;
 	private String firstName;

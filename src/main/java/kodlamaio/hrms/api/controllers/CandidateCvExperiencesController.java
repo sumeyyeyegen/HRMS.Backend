@@ -17,7 +17,7 @@ import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.CandidateCvEducation;
 import kodlamaio.hrms.entities.concretes.CandidateCvExperience;
-import kodlamaio.hrms.entities.dtos.CvExperienceForAddDto;
+import kodlamaio.hrms.entities.dtos.CvExperienceForAddAndUpdateDto;
 
 @CrossOrigin()
 @RestController
@@ -34,7 +34,7 @@ public class CandidateCvExperiencesController {
 	}
 	
 	@PostMapping("/add")
-	public ResponseEntity<Result> add(@RequestBody CvExperienceForAddDto cvExperiencesForAddDto) {
+	public ResponseEntity<Result> add(@RequestBody CvExperienceForAddAndUpdateDto cvExperiencesForAddDto) {
 		final Result result = candidateCvExperienceService.addExperiences(cvExperiencesForAddDto);
 
 		return ResponseEntity.ok(result);

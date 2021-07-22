@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CvImageForAddDto {
+public class CvImageForAddAndUpdateDto {
 	private int id;
 	private String imageUrl;
 	private LocalDateTime createAt = LocalDateTime.now();

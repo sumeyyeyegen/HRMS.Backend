@@ -45,8 +45,8 @@ public class CandidateCvEducationsController {
 	}
 	
 	@PutMapping("/update")
-	public ResponseEntity<Result> update(@RequestBody CandidateCvEducation cvEdu){
-		final Result result = candidateCvEducationService.update(cvEdu);
+	public ResponseEntity<Result> update(@RequestBody CvEducationForAddAndUpdateDto cvEduDto){
+		final Result result = candidateCvEducationService.updateEducation(cvEduDto);
 		if(!result.isSuccess())
 			return new ResponseEntity<Result>(result, HttpStatus.BAD_REQUEST);
 		return ResponseEntity.ok(result);

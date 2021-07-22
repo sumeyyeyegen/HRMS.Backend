@@ -6,10 +6,10 @@ import kodlamaio.hrms.core.business.BaseService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.CandidateCvImage;
-import kodlamaio.hrms.entities.dtos.CvImageForAddDto;
+import kodlamaio.hrms.entities.dtos.CvImageForAddAndUpdateDto;
 
 public interface CandidateCvImageService extends BaseService<CandidateCvImage, Integer>{
-	Result add(CvImageForAddDto imageDto, MultipartFile file);
+	Result add(CvImageForAddAndUpdateDto imageDto, MultipartFile file);
 	DataResult<CandidateCvImage> getByCandidateCvId(int candidateCvId);
-	Result addImage(CvImageForAddDto imageDto);
+	Result addImage(CvImageForAddAndUpdateDto imageDto);
 }

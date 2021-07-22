@@ -21,8 +21,8 @@ import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.entities.concretes.CandidateCv;
 import kodlamaio.hrms.entities.concretes.CandidateCvExperience;
 import kodlamaio.hrms.entities.concretes.CandidateCvImage;
-import kodlamaio.hrms.entities.dtos.CvExperienceForAddDto;
-import kodlamaio.hrms.entities.dtos.CvImageForAddDto;
+import kodlamaio.hrms.entities.dtos.CvExperienceForAddAndUpdateDto;
+import kodlamaio.hrms.entities.dtos.CvImageForAddAndUpdateDto;
 
 @CrossOrigin()
 @RestController
@@ -46,7 +46,7 @@ public class CandidateCvImagesController {
 	}
 	
 	@PostMapping("/add")
-	public ResponseEntity<?> add(@RequestBody CvImageForAddDto cvImageForAddDto) {
+	public ResponseEntity<?> add(@RequestBody CvImageForAddAndUpdateDto cvImageForAddDto) {
 		final Result result = candidateCvImageService.addImage(cvImageForAddDto);
 
 		return ResponseEntity.ok(result);
@@ -56,7 +56,7 @@ public class CandidateCvImagesController {
 	public ResponseEntity<Result> add(@RequestBody MultipartFile file,@RequestParam int candidateCvId) {
 		
 //		CandidateCvImage candidateCvImage = new CandidateCvImage();
-		CvImageForAddDto imageDto = new CvImageForAddDto();
+		CvImageForAddAndUpdateDto imageDto = new CvImageForAddAndUpdateDto();
 		CandidateCv candidateCv = new CandidateCv();
 		candidateCv.setId(candidateCvId);
 		imageDto.setCandidateCvId(candidateCvId);

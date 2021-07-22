@@ -17,7 +17,7 @@ import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.entities.concretes.CandidateCvLanguage;
-import kodlamaio.hrms.entities.dtos.CvLanguagesForAddDto;
+import kodlamaio.hrms.entities.dtos.CvLanguagesForAddAndUpdateDto;
 
 @CrossOrigin()
 @RestController
@@ -40,7 +40,7 @@ public class CandidateCvLanguagesController {
 	}
 	
 	@PostMapping("/add")
-	public ResponseEntity<Result> add(@RequestBody CvLanguagesForAddDto cvLanguagesForAddDto){
+	public ResponseEntity<Result> add(@RequestBody CvLanguagesForAddAndUpdateDto cvLanguagesForAddDto){
 		final Result result = candidateCvLanguageService.addLanguages(cvLanguagesForAddDto);
 		
 		return ResponseEntity.ok(result);

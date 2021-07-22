@@ -22,7 +22,7 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode
 @AllArgsConstructor
-public class CvLanguagesForAddDto {
+public class CvLanguagesForAddAndUpdateDto {
 	@JsonIgnore
 	private int id;
 	private String languageName;
