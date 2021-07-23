@@ -12,4 +12,5 @@ public interface CandidateCvImageService extends BaseService<CandidateCvImage, I
 	Result add(CvImageForAddAndUpdateDto imageDto, MultipartFile file);
 	DataResult<CandidateCvImage> getByCandidateCvId(int candidateCvId);
 	Result addImage(CvImageForAddAndUpdateDto imageDto);
+	Result updateImage(CvImageForAddAndUpdateDto imageDto);
 }

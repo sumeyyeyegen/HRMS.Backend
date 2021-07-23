@@ -11,4 +11,5 @@ import kodlamaio.hrms.entities.dtos.CvWebSitesForAddAndUpdateDto;
 public interface CandidateCvWebsiteService extends BaseService<CandidateCvWebsite, Integer>{
 	Result addWebSites(CvWebSitesForAddAndUpdateDto cvWebSitesForAddDto);
 	DataResult<List<CandidateCvWebsite>> getByCandidateCvId(int candidateCvId);
+	Result updateWebSite(CvWebSitesForAddAndUpdateDto cvWebDto);
 }
