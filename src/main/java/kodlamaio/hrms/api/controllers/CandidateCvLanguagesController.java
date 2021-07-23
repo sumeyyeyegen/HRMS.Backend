@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -42,6 +43,13 @@ public class CandidateCvLanguagesController {
 	@PostMapping("/add")
 	public ResponseEntity<Result> add(@RequestBody CvLanguagesForAddAndUpdateDto cvLanguagesForAddDto){
 		final Result result = candidateCvLanguageService.addLanguages(cvLanguagesForAddDto);
+		
+		return ResponseEntity.ok(result);
+	}
+	
+	@PutMapping("/update")
+	public ResponseEntity<Result> update(@RequestBody CvLanguagesForAddAndUpdateDto cvLanguagesForAddDto){
+		final Result result = candidateCvLanguageService.updateLanguage(cvLanguagesForAddDto);
 		
 		return ResponseEntity.ok(result);
 	}
