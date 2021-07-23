@@ -22,8 +22,6 @@ import lombok.ToString;
 public class CvExperienceForAddAndUpdateDto {
 	@JsonIgnore
 	private int id;
-	private String firstName;
-	private String lastName;
 	private int jobId;
 	private int candidateCvId;
 	private String workPlaceName;
