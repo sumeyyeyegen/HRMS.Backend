@@ -17,10 +17,8 @@ import lombok.ToString;
 @AllArgsConstructor
 
 public class CvWebSitesForAddAndUpdateDto {
-	@JsonIgnore
 	private int id;
 	private String address;
-	private final LocalDateTime createAt = LocalDateTime.now();
 	private int candidateCvId;
 	private int websiteId;
 }
