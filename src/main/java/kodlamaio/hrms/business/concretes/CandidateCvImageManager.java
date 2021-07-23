@@ -83,5 +83,16 @@ public class CandidateCvImageManager implements CandidateCvImageService{
 		return null;
 	}
 
+	@Override
+	public Result updateImage(CvImageForAddAndUpdateDto imageDto) {
+		CandidateCvImage cvImage = candidateCvImageDao.getOne(imageDto.getId());
+		cvImage.setImageUrl(imageDto.getImageUrl());
+		cvImage.setCreateAt(imageDto.getCreateAt());
+		cvImage.getCandidateCv().setId(imageDto.getCandidateCvId());
+		
+		candidateCvImageDao.save(cvImage);
+		return new SuccessResult("Fotoğraf güncellendi");
+	}
+
 
 }

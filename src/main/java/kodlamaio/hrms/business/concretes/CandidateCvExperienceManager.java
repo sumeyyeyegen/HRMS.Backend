@@ -79,12 +79,13 @@ public class CandidateCvExperienceManager implements CandidateCvExperienceServic
 	@Override
 	public Result updateExperience(CvExperienceForAddAndUpdateDto experienceDto) {
 		CandidateCvExperience resCvExperience = candidateCvExperienceDao.getOne(experienceDto.getId());
+		resCvExperience.getCandidateCv().setId(experienceDto.getCandidateCvId());
+		resCvExperience.getJob().setId(experienceDto.getJobId());
+		resCvExperience.setStartDate(experienceDto.getStartDate());
+		resCvExperience.setQuitDate(experienceDto.getQuitDate());
+		resCvExperience.setWorkPlaceName(experienceDto.getWorkPlaceName());
 		
-//		resCvExperience.setGraduationDate(cvEduDto.getGraduationDate());
-//		resCvExperience.setStartDate(cvEduDto.getStartDate());
-//		resCvExperience.setSchoolName(cvEduDto.getSchoolName());
-//		
-//		candidateCvEducationDao.save(resCvEducation);
+		candidateCvExperienceDao.save(resCvExperience);
 		
 		return new SuccessResult("Güncelleme işlemi başarılı bir şekilde gerçekleştirildi");
 	}
