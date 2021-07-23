@@ -72,4 +72,12 @@ public class CandidateCvSkillManager implements CandidateCvSkillService {
 		return new SuccessDataResult<List<CandidateCvSkill>>(skills, "Veriler başarılı bir şekilde getirildi");
 	}
 
+	@Override
+	public Result updateSkill(CvSkillForAddAndUpdateDto cvSkillDto) {
+		CandidateCvSkill cvSkill = candidateCvSkillDao.getOne(cvSkillDto.getId());
+		cvSkill.getCandidateCv().setId(cvSkillDto.getCandidateCvId());
+		cvSkill.setName(cvSkillDto.getName());
+		return new SuccessResult("Güncelleme işlemi başarılı");
+	}
+
 }

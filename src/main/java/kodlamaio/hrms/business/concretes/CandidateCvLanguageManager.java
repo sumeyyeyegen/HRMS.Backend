@@ -13,6 +13,7 @@ import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.CandidateCvLanguageDao;
 import kodlamaio.hrms.entities.concretes.CandidateCvExperience;
+import kodlamaio.hrms.entities.concretes.CandidateCvImage;
 import kodlamaio.hrms.entities.concretes.CandidateCvLanguage;
 import kodlamaio.hrms.entities.dtos.CvLanguagesForAddAndUpdateDto;
 
@@ -69,6 +70,17 @@ public class CandidateCvLanguageManager implements CandidateCvLanguageService {
 	public DataResult<List<CandidateCvLanguage>> getByCandidateCvId(int candidateCvId) {
 		List<CandidateCvLanguage> languages = candidateCvLanguageDao.getByCandidateCv_Id(candidateCvId);
 		return new SuccessDataResult<List<CandidateCvLanguage>>(languages, "Veriler başarılı bir şekilde getirildi.") ;
+	}
+	
+	@Override
+	public Result updateLanguage(CvLanguagesForAddAndUpdateDto languageDto) {
+		CandidateCvLanguage cvLang = candidateCvLanguageDao.getOne(languageDto.getId());
+		cvLang.getCandidateCv().setId(languageDto.getCandidateCvId());
+		cvLang.setLanguageName(languageDto.getLanguageName());
+		cvLang.setLanguageLevel(languageDto.getLanguageLevel());
+		
+		candidateCvLanguageDao.save(cvLang);
+		return new SuccessResult("Güncelleme işlemi başarılı");
 	}
 
 }
