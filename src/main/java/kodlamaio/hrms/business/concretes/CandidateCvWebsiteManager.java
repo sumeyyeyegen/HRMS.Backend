@@ -70,6 +70,16 @@ public class CandidateCvWebsiteManager implements CandidateCvWebsiteService {
 		return new SuccessDataResult<List<CandidateCvWebsite>>(websites, "Veriler başarılı bir şekilde getirildi.");
 	}
 
+	@Override
+	public Result updateWebSite(CvWebSitesForAddAndUpdateDto cvWebDto) {
+		CandidateCvWebsite cvWebSite = candidateCvWebsiteDao.getOne(cvWebDto.getId());
+		cvWebSite.getCandidateCv().setId(cvWebDto.getId());
+		cvWebSite.setAddress(cvWebDto.getAddress());
+		cvWebSite.getWebsite().setId(cvWebDto.getWebsiteId());
+		candidateCvWebsiteDao.save(cvWebSite);
+		return new SuccessResult("Güncelleme işlemi başarılı bir şekilde gerçekleştirildi.");
+	}
+
 
 	
 	
