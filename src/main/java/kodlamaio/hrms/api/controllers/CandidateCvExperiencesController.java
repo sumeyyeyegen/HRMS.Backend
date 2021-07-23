@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,6 +37,13 @@ public class CandidateCvExperiencesController {
 	@PostMapping("/add")
 	public ResponseEntity<Result> add(@RequestBody CvExperienceForAddAndUpdateDto cvExperiencesForAddDto) {
 		final Result result = candidateCvExperienceService.addExperiences(cvExperiencesForAddDto);
+
+		return ResponseEntity.ok(result);
+	}
+	
+	@PutMapping("/update")
+	public ResponseEntity<Result> update(@RequestBody CvExperienceForAddAndUpdateDto cvExperiencesForAddDto) {
+		final Result result = candidateCvExperienceService.updateExperience(cvExperiencesForAddDto);
 
 		return ResponseEntity.ok(result);
 	}
