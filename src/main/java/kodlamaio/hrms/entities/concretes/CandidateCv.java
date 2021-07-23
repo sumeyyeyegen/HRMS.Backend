@@ -65,6 +65,9 @@ public class CandidateCv {
 	@OneToMany(mappedBy = "candidateCv")
 	private List<CandidateCvImage> images;
 	
+	@OneToMany(mappedBy = "candidateCv")
+	private List<CandidateCvWebsite> websites;
+	
 	@NotNull
 	@OneToOne
 	@JoinColumn(name="candidate_id")
