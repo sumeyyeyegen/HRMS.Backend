@@ -12,8 +12,10 @@ import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.CandidateCvWebsiteDao;
+import kodlamaio.hrms.entities.concretes.CandidateCv;
 import kodlamaio.hrms.entities.concretes.CandidateCvLanguage;
 import kodlamaio.hrms.entities.concretes.CandidateCvWebsite;
+import kodlamaio.hrms.entities.concretes.Website;
 import kodlamaio.hrms.entities.dtos.CvWebSitesForAddAndUpdateDto;
 
 @Service
@@ -73,11 +75,22 @@ public class CandidateCvWebsiteManager implements CandidateCvWebsiteService {
 	@Override
 	public Result updateWebSite(CvWebSitesForAddAndUpdateDto cvWebDto) {
 		CandidateCvWebsite cvWebSite = candidateCvWebsiteDao.getOne(cvWebDto.getId());
-		cvWebSite.getCandidateCv().setId(cvWebDto.getId());
+		
+		CandidateCv cv = new CandidateCv();
+		Website web = new Website();
+		
+		cv.setId(cvWebDto.getCandidateCvId());
+		web.setId(cvWebDto.getWebsiteId());
+		
+		cvWebSite.setCandidateCv(cv);
+		
+		cvWebSite.setWebsite(web);
+		
 		cvWebSite.setAddress(cvWebDto.getAddress());
-		cvWebSite.getWebsite().setId(cvWebDto.getWebsiteId());
+		
 		candidateCvWebsiteDao.save(cvWebSite);
-		return new SuccessResult("Güncelleme işlemi başarılı bir şekilde gerçekleştirildi.");
+		
+		return new SuccessResult("işlem başarılı");
 	}
 
 
