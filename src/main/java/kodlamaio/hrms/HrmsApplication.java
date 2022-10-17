@@ -15,6 +15,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class HrmsApplication {
 
 	public static void main(String[] args) {
+		System.out.println("Hello!  java running");
 		SpringApplication.run(HrmsApplication.class, args);
 	}
 
@@ -32,3 +33,4 @@ public class HrmsApplication {
     }
 
 }
+ 

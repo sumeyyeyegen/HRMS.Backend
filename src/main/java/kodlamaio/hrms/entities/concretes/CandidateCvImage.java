@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -42,7 +43,8 @@ public class CandidateCvImage {
 	private String imageUrl;
 	
 	@NotNull
-	@Column(name = "created_at", columnDefinition = "Date default CURRENT_DATE")
+	@Column(name = "created_at",nullable = false, updatable = false)
+	@CreationTimestamp
 	private LocalDateTime createAt = LocalDateTime.now();
 
 	@JsonIgnore()
