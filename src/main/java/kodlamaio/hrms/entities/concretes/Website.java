@@ -30,13 +30,13 @@ import lombok.NoArgsConstructor;
 public class Website {
 	
 	@Id
-	@Column(name="id")
+	@Column(name="web_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	@NotNull
 	@Length(max = 50)
-	@Column(name="name")
+	@Column(name="web_address_path")
 	private String name;
 	
 	@NotNull

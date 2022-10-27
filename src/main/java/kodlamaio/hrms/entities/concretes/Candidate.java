@@ -17,10 +17,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import kodlamaio.hrms.core.entities.User;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Data
 @Entity
@@ -31,10 +33,8 @@ import lombok.NoArgsConstructor;
 
 public class Candidate extends User {	
 
-	@Id
-	@NotNull
-	@Column(name="id")
-	@PrimaryKeyJoinColumn(name="id",referencedColumnName = "id")
+	@PrimaryKeyJoinColumn(name="candidate_id")
+	@Setter(value = AccessLevel.NONE)
 	private int id;
 	
 	@NotNull
@@ -55,7 +55,7 @@ public class Candidate extends User {
 	
 	@NotNull
 	@Column(name="birth_year")
-	private int birthYear;	
+	private String birthYear;	
 	
 	@NotNull
 	@JsonIgnore()

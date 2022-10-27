@@ -29,7 +29,7 @@ public class JobAdvertisement {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) 
-	@Column(name="id")
+	@Column(name="job_advert_id")
 	private int id;
 	
 	@NotNull
@@ -38,7 +38,7 @@ public class JobAdvertisement {
 	private String jobDescription;
 	
 	@NotNull
-	@Column(name="open_positions")
+	@Column(name="open_position_count")
 	private int openPositions;
 	
 	@NotNull
@@ -55,11 +55,11 @@ public class JobAdvertisement {
 	
 	@NotNull
 	@Column(name="min_salary")
-	private int minSalary;
+	private Float minSalary;
 	
 	@NotNull
 	@Column(name="max_salary")
-	private int maxSalary;
+	private Float maxSalary;
 	
 	@NotNull
 	@Column(name="is_approved")

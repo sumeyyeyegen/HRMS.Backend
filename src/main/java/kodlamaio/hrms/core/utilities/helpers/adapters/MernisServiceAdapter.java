@@ -23,7 +23,7 @@ public class MernisServiceAdapter implements MernisService{
 					Long.parseLong(candidate.getIdentityNumber() ), 
 					candidate.getFirstName().toUpperCase(new Locale("tr")),
 					candidate.getLastName().toUpperCase(new Locale("tr")),
-					candidate.getBirthYear());
+					Integer.parseInt(candidate.getBirthYear()));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

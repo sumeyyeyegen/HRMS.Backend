@@ -24,7 +24,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Data
-@Entity(name="user")
+@Entity(name="users")
 @Inheritance(strategy = InheritanceType.JOINED)
 @NoArgsConstructor
 @ToString
@@ -32,7 +32,7 @@ import lombok.ToString;
 @Table(name="users")
 
 public class User {
-	@Column(name="id")
+	@Column(name="user_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
 	private int id; 
@@ -41,7 +41,7 @@ public class User {
 	@Column(name="email")
 	private String email;
 	 
-	@Column(name="password")
+	@Column(name="user_password")
 	private String password;
 	
 }

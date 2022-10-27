@@ -31,10 +31,10 @@ public class CvEducationForAddAndUpdateDto {
 	private String departmentName;
 	@Getter
 	@Setter
-	private LocalDate startDate;
+	private String startDate;
 	@Getter
 	@Setter
-	private LocalDate graduationDate;
+	private String graduationDate;
 	@Getter
 	@Setter
 	private LocalDateTime createdAt = LocalDateTime.now(ZoneId.of("Asia/Istanbul"));

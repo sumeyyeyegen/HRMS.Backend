@@ -29,7 +29,7 @@ public class VerificationCodeEmployer extends VerificationCode {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id")
+	@Column(name="verification_code_employer_id")
 	private int id;
 	
 	@NotNull

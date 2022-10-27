@@ -36,12 +36,12 @@ public class CandidateCvWebsite {
 	@Id
 	@NotNull
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id")
-	private int id;
+	@Column(name="cv_web_id")
+	private int cvWebId;
 	
 	@NotNull
 	@Length(max = 200)
-	@Column(name="address")
+	@Column(name="web_address")
 	private String address;
 	
 	@NotNull

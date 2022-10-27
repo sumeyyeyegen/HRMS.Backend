@@ -24,7 +24,7 @@ public class UserManager implements UserService {
 
 	@Override
 	public DataResult<User> login(User user) {
-		return new SuccessDataResult<User>(userDao.getOne(user.getId()));
+		return new SuccessDataResult<User>(userDao.getOne(user.getId())); 
 		
 	} 
 }

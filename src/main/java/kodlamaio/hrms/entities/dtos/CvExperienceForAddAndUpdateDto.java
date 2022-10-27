@@ -1,5 +1,6 @@
 package kodlamaio.hrms.entities.dtos;
 
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import javax.persistence.Column;
@@ -24,8 +25,8 @@ public class CvExperienceForAddAndUpdateDto {
 	private int id;
 	private int jobId;
 	private int candidateCvId;
-	private String workPlaceName;
-	private LocalDate startDate;
-	private LocalDate quitDate;
+	private int workPlaceId;
+	private Timestamp startDate;
+	private Timestamp quitDate;
 	private final LocalDateTime createAt = LocalDateTime.now();
 }

@@ -83,7 +83,7 @@ public class CandidateCvExperienceManager implements CandidateCvExperienceServic
 		resCvExperience.getJob().setId(experienceDto.getJobId());
 		resCvExperience.setStartDate(experienceDto.getStartDate());
 		resCvExperience.setQuitDate(experienceDto.getQuitDate());
-		resCvExperience.setWorkPlaceName(experienceDto.getWorkPlaceName());
+		resCvExperience.setWorkPlaceId(experienceDto.getWorkPlaceId());
 		
 		candidateCvExperienceDao.save(resCvExperience);
 		

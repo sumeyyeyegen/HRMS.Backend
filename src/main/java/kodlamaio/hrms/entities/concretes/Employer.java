@@ -31,10 +31,7 @@ import lombok.Setter;
 
 public class Employer extends User {
 	
-	@Id
-	@NotNull
-	@Column(name="id")
-	@PrimaryKeyJoinColumn(name="id",referencedColumnName = "id")
+	@PrimaryKeyJoinColumn(name="employer_id")
 	@Setter(value = AccessLevel.NONE)
 	private int id;
 	
@@ -43,7 +40,7 @@ public class Employer extends User {
 	private String companyName;
 	
 	@Length(max = 50)
-	@Column(name="web_site")
+	@Column(name="web_address")
 	private String webSite;
 	
 	@Length(max = 12)

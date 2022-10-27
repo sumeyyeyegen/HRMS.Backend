@@ -30,13 +30,13 @@ import lombok.Setter;
 
 public class City {
 	@Id
-	@Column(name="id")
+	@Column(name="city_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private int cityId;
 	
 	@NotNull
 	@Length(max = 50)
-	@Column(name="name")
+	@Column(name="city_name")
 	private String name;
 
 	@JsonIgnore()

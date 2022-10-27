@@ -16,10 +16,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import kodlamaio.hrms.core.entities.User;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Data
 @Entity
@@ -30,10 +32,9 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = false)
 
 public class Employee extends User {	
-	
-	@Id
-	@NotNull
-	@PrimaryKeyJoinColumn(name="id",referencedColumnName = "id")
+
+	@PrimaryKeyJoinColumn(name="employee_id")
+	@Setter(value = AccessLevel.NONE)
 	private int id;
 
 	@NotNull

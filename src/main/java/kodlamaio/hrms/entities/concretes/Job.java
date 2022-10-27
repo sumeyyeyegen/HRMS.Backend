@@ -35,12 +35,12 @@ public class Job {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id")
+	@Column(name="job_id")
 	private int id;
 	
 	@NotNull
 	@Length(max = 255)
-	@Column(name="title")
+	@Column(name="job_title")
 	private String title;
 	
 	@JsonIgnore()

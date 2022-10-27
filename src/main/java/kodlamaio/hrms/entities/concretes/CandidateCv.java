@@ -37,7 +37,7 @@ public class CandidateCv {
 	
 	@Id
 	@NotNull
-	@Column(name="id")
+	@Column(name="candidate_cv_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	

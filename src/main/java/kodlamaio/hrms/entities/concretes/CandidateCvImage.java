@@ -34,8 +34,8 @@ public class CandidateCvImage {
 	@Id
 	@NotNull
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id")
-	private int id;
+	@Column(name="image_id")
+	private int imageId;
 	
 	@NotNull
 	@Length(max=255)

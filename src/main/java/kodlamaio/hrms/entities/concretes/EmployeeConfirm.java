@@ -11,6 +11,8 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -21,23 +23,23 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Entity
 @Table(name="employee_confirms")
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler","EmployeeConfirm"})
 @Inheritance(strategy=InheritanceType.JOINED)
+@Entity
 
 public class EmployeeConfirm {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id")
+	@Column(name="employee_confirm_id")
 	private int id;
 	
 	@NotNull
 	@Column(name="is_confirmed")
-	private boolean isConfirmed;
+	private boolean isConfirmed; 
 	
 	@Column(name="confirm_date")
 	private LocalDateTime confirmDate;	

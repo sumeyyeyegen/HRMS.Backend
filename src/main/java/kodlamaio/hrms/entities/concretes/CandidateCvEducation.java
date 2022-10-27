@@ -38,11 +38,11 @@ import lombok.Setter;
 public class CandidateCvEducation {
 	@Id
 	@NotNull
-	@Column(name="id")
+	@Column(name="education_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Getter
 	@Setter
-	private int id;
+	private int educationId;
 	
 	@NotNull
 	@Length(max = 100)
@@ -63,13 +63,13 @@ public class CandidateCvEducation {
 	@Column(name="start_date")
 	@Getter
 	@Setter
-	private LocalDate startDate;
+	private String startDate;
 	
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	@Column(name="graduation_date")
 	@Getter
 	@Setter
-	private LocalDate graduationDate;
+	private String graduationDate;
 	
 	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
 	@Column(name = "created_at")

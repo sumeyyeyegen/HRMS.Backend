@@ -33,15 +33,15 @@ public class CandidateCvLanguage {
 	@Id
 	@NotNull
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id")
-	private int id;
+	@Column(name="lang_id")
+	private int langId;
 	
 	@NotNull
-	@Column(name="language_name")
+	@Column(name="lang_name")
 	private String languageName;
 	
 	@NotNull
-	@Column(name="language_level")
+	@Column(name="lang_level")
 	private short languageLevel; 
 	
 	@NotNull

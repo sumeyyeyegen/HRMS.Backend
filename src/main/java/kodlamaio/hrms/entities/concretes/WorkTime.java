@@ -31,13 +31,13 @@ import lombok.Setter;
 public class WorkTime {
 
 	@Id
-	@Column(name="id")
+	@Column(name="work_time_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY )
 	private int id;
 	
 	@NotNull
 	@Length(max = 30)
-	@Column(name="name")
+	@Column(name="work_time_title")
 	private String name;
 	
 	@JsonIgnore()

@@ -1,5 +1,6 @@
 package kodlamaio.hrms.entities.concretes;
 
+import java.sql.Timestamp;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
@@ -32,7 +33,7 @@ public class VerificationCode {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id")
+	@Column(name="verification_code_id")
 	private int id;
 	
 	@NotNull
@@ -46,5 +47,5 @@ public class VerificationCode {
 	
 	@NotNull
 	@Column(name="verified_date")
-	private LocalDate verifiedDate;
+	private Timestamp verifiedDate;
 }
